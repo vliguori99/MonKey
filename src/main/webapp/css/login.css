@@ -1,0 +1,23 @@
+.form-container > form{}
+
+body{background-color: rgb(238,237,234);}
+
+.main-section{background-color: rgba(255, 255, 255, 0.7); display: flex; width:67%;
+    align-items: center; flex-direction: column; margin: 50px auto; padding: 5px;
+    border-radius: 30px; padding-bottom: 45px;}
+
+.login-form{display: flex; width:100%; align-items: center; flex-direction: column;
+    margin: 0px auto; margin-bottom: 20px; justify-content: center;}
+
+input[type=text], input[type = password]{border: 3px solid #ccc; transition: 0.3s; width: 100%;
+    border-radius: 10px; padding: 10px 6px; margin-bottom: 10px; margin-top: -15px;}
+
+input[type=text]:focus, input[type= password]:focus{border: 3px solid black; border-radius: 10px;
+    padding: 10px 6px; outline: none;}
+
+h1, h2{font-family: Verdana, Helvetica, sans-serif;}
+
+input[type="submit"]{background-color: black;  color: white; border: none; font-family: Verdana, Helvetica, sans-serif;
+    font-size:15px; padding: 12px 16px; font-weight: bold; transition: 0.3s;}
+
+input[type="submit"]:hover{background-color: rgba(255, 255, 255, 0.7); color: black; cursor: pointer;}

@@ -1,0 +1,17 @@
+form{display: inline-block; margin: 2%}
+
+body{background-color: rgb(238,237,234);}
+
+.faq-section, .contacts-section{background-color: rgba(255, 255, 255, 0.7);
+    display: flex; width:50%; align-items: left; flex-direction: column;
+    margin: 50px auto; padding: 30px; border-radius: 30px;}
+
+h1{font-family: Verdana, Helvetica, sans-serif; margin: 0; padding: 0;}
+
+p{font-family: Verdana, Helvetica, sans-serif; font-style: italic; margin: 0; padding: 0;}
+
+article{margin-top: 40px; margin-bottom: 10px;}
+
+h1{text-align: center;}
+
+.question{font-weight: bold; font-size: 1.25em;}
