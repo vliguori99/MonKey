@@ -6,7 +6,7 @@ import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreUtente.UtenteNotLo
 
 public interface AutenticazioneServiceInterface {
 
-    Utente login(String username, String password) throws UtenteNotLoggedException;
+    Utente login(String username, String password, String ip) throws UtenteNotLoggedException;
 
     void logout(Utente utente) throws LogoutFailedException;
 }

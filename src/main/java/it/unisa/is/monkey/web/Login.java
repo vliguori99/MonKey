@@ -1,6 +1,9 @@
 package it.unisa.is.monkey.web;
 
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Utente;
+import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreUtente.UtenteNotLoggedException;
+import it.unisa.is.monkey.applicationLogic.userManager.gestioneAccountUtente.AccountServiceUtente;
+import it.unisa.is.monkey.applicationLogic.userManager.gestioneAutenticazione.AutenticazioneService;
 import it.unisa.is.monkey.model.MySQLProdottoDAO;
 import it.unisa.is.monkey.model.MySQLUtenteDAO;
 
@@ -46,31 +49,23 @@ public class Login extends HttpServlet {
         synchronized(session) {
             username = request.getParameter("username");
             password = request.getParameter("password");
-            utenti = udao.getAllUtenti();
-            for (Utente u : utenti)
-            {
-                if (username.equals(u.getUsername()))
-                {
-                    if(password.equals(u.getPsw()))
-                    {
-                        session.setAttribute("userCode", u.getId());
-                        if(u.getAmministratore())
-                        {
-                            session.setAttribute("isAdmin", true);
-                            rs = request.getRequestDispatcher("DisplayAdminProducts");
-                            rs.forward(request, response);
-                            return;
-                        }
-                        pdao.updateCartOwner((String) session.getAttribute("userCode"), request.getRemoteAddr());
-                        rs = request.getRequestDispatcher("index.jsp");
-                        rs.forward(request, response);
-                        return;
-                    }
-                    else
-                    {
-                        break;
-                    }
+            String ip = request.getRemoteAddr();
+
+            AutenticazioneService autenticazione = new AutenticazioneService();
+            try {
+                Utente u = autenticazione.login(username, password, ip);
+                session.setAttribute("userCode", u.getId());
+                if (u.getAmministratore()){
+                    session.setAttribute("isAdmin", true);
+                    rs = request.getRequestDispatcher("DisplayAdminProducts");
+                    rs.forward(request, response);
+                    return;
                 }
+                rs = request.getRequestDispatcher("index.jsp");
+                rs.forward(request, response);
+                return;
+            } catch (UtenteNotLoggedException e) {
+                e.printStackTrace();
             }
             request.setAttribute("loginError", true);
             rs = request.getRequestDispatcher("login.jsp");
