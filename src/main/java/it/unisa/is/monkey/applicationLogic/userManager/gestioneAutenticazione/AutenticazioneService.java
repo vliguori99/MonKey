@@ -15,22 +15,20 @@ public class AutenticazioneService implements AutenticazioneServiceInterface {
 
     @Override
     public Utente login(String username, String password, String ip) throws UtenteNotLoggedException {
-        if (username == null) {
-            throw new UtenteNotLoggedException("username errato");
-        }
-        if (password == null) {
-            throw new UtenteNotLoggedException("password errata");
-        }
 
         List<Utente> utenti = utenteDAO.getAllUtenti();
         for (Utente u : utenti) {
-            if (username.equals(u.getUsername()) && password.equals(u.getPsw())) {
-                if (u.getAmministratore()) {
+            if (username.equals(u.getUsername())) {
+                if (password.equals(u.getPsw())) {
+                    if (u.getAmministratore()) {
+                        return u;
+                    }
+                    prodottoDAO.updateCartOwner(u.getId(), ip);
                     return u;
                 }
-                prodottoDAO.updateCartOwner(u.getId(), ip);
-                return u;
+                throw new UtenteNotLoggedException("Password errata");
             }
+            throw new UtenteNotLoggedException("Username errato");
         }
         return null;
     }
