@@ -1,4 +1,4 @@
 package it.unisa.is.monkey.applicationLogic.adminManager.gestioneOrdineAdmin;
 
-public class a {
+public class OrdiniServiceAdmin {
 }
