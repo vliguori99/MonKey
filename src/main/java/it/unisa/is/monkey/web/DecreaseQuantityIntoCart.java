@@ -1,6 +1,7 @@
 package it.unisa.is.monkey.web;
 
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.*;
+import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.QuantityException;
 import it.unisa.is.monkey.model.*;
 import it.unisa.is.monkey.applicationLogic.userManager.gestioneProdottiUtente.*;
 
@@ -39,17 +40,16 @@ public class DecreaseQuantityIntoCart extends HttpServlet {
         synchronized(session) {
             String codProdotto = request.getParameter("id");
             String utente = (String) session.getAttribute("userCode");
-            MySQLProdottoDAO prodotto = new MySQLProdottoDAO();
             String ip = request.getRemoteAddr();
-            if(prodotto.getQuantityIntoCart(codProdotto, utente, ip) > 1)
-            {
-                prodotto.updateGameUser(-1, codProdotto, utente, ip);
-                request.getRequestDispatcher("/DisplayCart").forward(request, response);
+
+            ProdottiServiceUtente prodottiService = new ProdottiServiceUtente();
+            try {
+                int carrello = prodottiService.rimuoviUnoDalCarrello(codProdotto, utente, ip);
+            } catch (QuantityException e) {
+                e.printStackTrace();
             }
-            else
-            {
-                request.getRequestDispatcher("/RemoveFromCart").forward(request, response);
-            }
+            request.getRequestDispatcher("/RemoveFromCart").forward(request, response);
+
         }
     }
 

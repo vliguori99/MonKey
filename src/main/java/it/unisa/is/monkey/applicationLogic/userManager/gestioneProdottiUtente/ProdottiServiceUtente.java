@@ -4,8 +4,10 @@ import it.unisa.is.monkey.applicationLogic.monkeyEntita.Ordine;
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Prodotto;
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Utente;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.PurchaseFailedException;
+import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.QuantityException;
 import it.unisa.is.monkey.model.MySQLOrdineDAO;
 import it.unisa.is.monkey.model.MySQLProdottoDAO;
+import it.unisa.is.monkey.model.MySQLUtenteDAO;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -15,6 +17,7 @@ public class ProdottiServiceUtente implements ProdottiServiceUtenteInterface{
 
     private MySQLProdottoDAO prodottoDAO = new MySQLProdottoDAO();
     private MySQLOrdineDAO ordineDAO = new MySQLOrdineDAO();
+    private MySQLUtenteDAO utenteDAO = new MySQLUtenteDAO();
 
     @Override
     public Ordine acquistaProdotto(Utente utente, List<Prodotto> prodotti) throws PurchaseFailedException {
@@ -68,11 +71,32 @@ public class ProdottiServiceUtente implements ProdottiServiceUtenteInterface{
         }
     }
 
-
-
-
     @Override
     public void rimuoviDalCarrello(String prodotto, String utente, String ip) {
         prodottoDAO.removeProductFromCart(prodotto, utente, ip);
+    }
+
+    @Override
+    public int aggiungiUnoAlCarrello(String idProdotto, String userCode, String ip) throws QuantityException {
+        int qProdotto = -1;
+        int qCarrello = -1;
+        qProdotto = prodottoDAO.getQuantita(idProdotto);
+        qCarrello = prodottoDAO.getQuantitaIntoCart(idProdotto, userCode, ip);
+        if (qProdotto == qCarrello){
+            throw new QuantityException("Quantità prodotto terminata");
+        }
+        prodottoDAO.updateGameUser(1, idProdotto, userCode, ip);
+        return qCarrello;
+    }
+
+    @Override
+    public int rimuoviUnoDalCarrello(String idProdotto, String userCode, String ip) throws QuantityException {
+        int qCarrello = prodottoDAO.getQuantityIntoCart(idProdotto, userCode, ip);
+        if (qCarrello <= 0) {
+            throw new QuantityException("Prodotto non presente nel carrello");
+        }
+        qCarrello--;
+        prodottoDAO.updateGameUser(qCarrello, idProdotto, userCode, ip);
+        return qCarrello;
     }
 }

@@ -1,6 +1,8 @@
 package it.unisa.is.monkey.web;
 
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.*;
+import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.QuantityException;
+import it.unisa.is.monkey.applicationLogic.userManager.gestioneProdottiUtente.ProdottiServiceUtente;
 import it.unisa.is.monkey.model.*;
 
 
@@ -39,23 +41,15 @@ public class IncreaseQuantityIntoCart extends HttpServlet {
         synchronized(session) {
             String codProdotto = request.getParameter("id");
             String utente = (String) session.getAttribute("userCode");
-            MySQLProdottoDAO prodotto = new MySQLProdottoDAO();
             String ip = request.getRemoteAddr();
-            int qProdotto = -1;
-            int qCarrello = -1;
-            qProdotto = prodotto.getQuantita(codProdotto);
-            qCarrello = prodotto.getQuantitaIntoCart(codProdotto, utente, ip);
-            System.out.println(qProdotto + " " + qCarrello);
-            if (qProdotto == qCarrello)
-            {
-                request.getRequestDispatcher("/DisplayCart").forward(request, response);
-            }
-            else
-            {
-                prodotto.updateGameUser(1, codProdotto, utente, ip);
-                request.getRequestDispatcher("/DisplayCart").forward(request, response);
-            }
 
+            ProdottiServiceUtente prodottiService = new ProdottiServiceUtente();
+            try {
+                int carrello = prodottiService.aggiungiUnoAlCarrello(codProdotto, utente, ip);
+            } catch (QuantityException e) {
+                e.printStackTrace();
+            }
+            request.getRequestDispatcher("/DisplayCart").forward(request, response);
         }
     }
 
