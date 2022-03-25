@@ -95,8 +95,7 @@ public class ProdottiServiceUtente implements ProdottiServiceUtenteInterface{
         if (qCarrello <= 0) {
             throw new QuantityException("Prodotto non presente nel carrello");
         }
-        qCarrello--;
-        prodottoDAO.updateGameUser(qCarrello, idProdotto, userCode, ip);
+        prodottoDAO.updateGameUser(-1, idProdotto, userCode, ip);
         return qCarrello;
     }
 }

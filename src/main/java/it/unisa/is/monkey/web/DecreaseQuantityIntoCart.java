@@ -38,18 +38,22 @@ public class DecreaseQuantityIntoCart extends HttpServlet {
         HttpSession session = request.getSession();
 
         synchronized(session) {
+            int carrello = 0;
             String codProdotto = request.getParameter("id");
             String utente = (String) session.getAttribute("userCode");
             String ip = request.getRemoteAddr();
 
             ProdottiServiceUtente prodottiService = new ProdottiServiceUtente();
             try {
-                int carrello = prodottiService.rimuoviUnoDalCarrello(codProdotto, utente, ip);
+                carrello = prodottiService.rimuoviUnoDalCarrello(codProdotto, utente, ip);
             } catch (QuantityException e) {
                 e.printStackTrace();
             }
-            request.getRequestDispatcher("/RemoveFromCart").forward(request, response);
-
+            if(carrello <= 1){
+                request.getRequestDispatcher("/RemoveFromCart").forward(request, response);
+            } else {
+                request.getRequestDispatcher("/DisplayCart").forward(request, response);
+            }
         }
     }
 
