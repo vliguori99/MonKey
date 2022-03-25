@@ -72,7 +72,7 @@ public class ProdottiServiceUtente implements ProdottiServiceUtenteInterface{
 
 
     @Override
-    public Prodotto rimuoviDalCarrello(Utente utente, Prodotto prodotto) {
-        return null;
+    public void rimuoviDalCarrello(String prodotto, String utente, String ip) {
+        prodottoDAO.removeProductFromCart(prodotto, utente, ip);
     }
 }

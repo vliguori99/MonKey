@@ -13,5 +13,5 @@ public interface ProdottiServiceUtenteInterface {
 
     void aggiungiAlCarrello(String prodotto, String utente, String ip, String userCode);
 
-    Prodotto rimuoviDalCarrello(Utente utente, Prodotto prodotto);
+    void rimuoviDalCarrello(String prodotto, String utente, String ip);
 }

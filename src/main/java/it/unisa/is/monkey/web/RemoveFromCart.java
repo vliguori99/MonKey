@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.*;
+import it.unisa.is.monkey.applicationLogic.userManager.gestioneProdottiUtente.ProdottiServiceUtente;
 import it.unisa.is.monkey.model.*;
 
 
@@ -35,9 +36,9 @@ public class RemoveFromCart extends HttpServlet {
         synchronized(session) {
             String codProdotto = request.getParameter("id");
             String utente = (String) session.getAttribute("userCode");
-            MySQLProdottoDAO prodotto = new MySQLProdottoDAO();
             String ip = request.getRemoteAddr();
-            prodotto.removeProductFromCart(codProdotto, utente, ip);
+                ProdottiServiceUtente prodotto = new ProdottiServiceUtente();
+                prodotto.rimuoviDalCarrello(codProdotto, utente, ip);
             request.getRequestDispatcher("/DisplayCart").forward(request, response);
         }
     }
