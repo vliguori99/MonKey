@@ -10,9 +10,10 @@ public class    AccountServiceUtente implements AccountServiceUtenteInterface{
 
     private MySQLUtenteDAO utenteDAO= new MySQLUtenteDAO();
     @Override
-    public void modificaUtente(Utente daModificare, String nome, String cognome, String username, String email,
+    public void modificaUtente(String id, String nome, String cognome, String username, String email,
                                String psw, String indirizzo, String numCarta) throws UserNotModifiedException {
 
+        Utente daModificare = utenteDAO.getUtente(id);
         daModificare.setNome(nome);
         daModificare.setCognome(cognome);
         daModificare.setUsername(username);

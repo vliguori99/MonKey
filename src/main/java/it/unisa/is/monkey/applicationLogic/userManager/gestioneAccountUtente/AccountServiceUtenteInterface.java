@@ -6,7 +6,7 @@ import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreUtente.UserNotModi
 
 public interface AccountServiceUtenteInterface {
 
-    void modificaUtente(Utente daModificare, String nome, String cognome, String username, String email, String psw,
+    void modificaUtente(String id, String nome, String cognome, String username, String email, String psw,
                         String indirizzo, String numCarta) throws UserNotModifiedException, UserNotModifiedException;
 
     //Potrebbe prendere in input int id (chiave primaria)
