@@ -1,11 +1,9 @@
 package it.unisa.is.monkey.web;
 
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Utente;
-import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreUtente.UtenteNotLoggedException;
-import it.unisa.is.monkey.applicationLogic.userManager.gestioneAccountUtente.AccountServiceUtente;
-import it.unisa.is.monkey.applicationLogic.userManager.gestioneAutenticazione.AutenticazioneService;
-import it.unisa.is.monkey.model.MySQLProdottoDAO;
+import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreUtente.UserNotRegisteredException;
 import it.unisa.is.monkey.model.MySQLUtenteDAO;
+import it.unisa.is.monkey.applicationLogic.userManager.gestioneRegistrazione.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,16 +17,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import java.io.Console;
 
-@WebServlet("/Login")
-public class Login extends HttpServlet {
+
+@WebServlet("/AddUserIntoDB")
+public class AddUserIntoDB extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Login() {
+    public AddUserIntoDB() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,36 +37,35 @@ public class Login extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
         HttpSession session = request.getSession();
-        String username = null;
-        String password = null;
+        Boolean amministratore = false;
         RequestDispatcher rs = null;
 
-        boolean usernameCorrect = false;
         synchronized(session) {
-            username = request.getParameter("username");
-            password = request.getParameter("password");
-            String ip = request.getRemoteAddr();
+            RegistrazioneService registrazioneUtente = new RegistrazioneService();
+            String nome = request.getParameter("nome");
+            String cognome = request.getParameter("cognome");
+            String username = request.getParameter("username");
+            String email = request.getParameter("email");
+            String psw = request.getParameter("psw");
+            String indirizzo = request.getParameter("indirizzo");
+            String numero_carta = request.getParameter("numero_carta");
 
-            AutenticazioneService autenticazione = new AutenticazioneService();
             try {
-                Utente u = autenticazione.login(username, password, ip);
+                Utente u = registrazioneUtente.registrazione(nome, cognome, username, email, psw, indirizzo,
+                        numero_carta, amministratore);
+                    if (amministratore) {
+                        session.setAttribute("isAdmin", true);
+                    }
                 session.setAttribute("userCode", u.getId());
-                if (u.getAmministratore()) {
-                    session.setAttribute("isAdmin", true);
-                    rs = request.getRequestDispatcher("DisplayAdminProducts");
-                    rs.forward(request, response);
-                    return;
-                }
                 rs = request.getRequestDispatcher("index.jsp");
                 rs.forward(request, response);
                 return;
-            } catch (UtenteNotLoggedException e) {
+            }   catch (UserNotRegisteredException e) {
                 e.printStackTrace();
-            }
+                }
 
-            request.setAttribute("loginError", true);
-            rs = request.getRequestDispatcher("login.jsp");
-            rs.forward(request, response);
+            request.setAttribute("registrationError", true);
+            request.getRequestDispatcher("DisplayRegistration").forward(request, response);
             return;
         }
     }

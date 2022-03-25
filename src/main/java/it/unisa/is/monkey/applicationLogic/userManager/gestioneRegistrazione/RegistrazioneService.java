@@ -13,13 +13,11 @@ public class RegistrazioneService implements RegistrazioneServiceInterface {
                                 String indirizzo, String numCarta, boolean amministratore)
             throws UserNotRegisteredException {
 
-
         if (utenteDAO.duplicateCheck(username, email)) {
-            throw new UserNotRegisteredException("email o username già registrati");
+                throw new UserNotRegisteredException("email o username già registrati");
         }
 
         String id = utenteDAO.codUserGenerator();
-
         Utente utente = new Utente(id, nome, cognome, username, email, psw, indirizzo, numCarta, amministratore);
         utenteDAO.createUtente(utente);
 
