@@ -84,11 +84,6 @@
         }
     %>
 </div>
-<div id="random-container">
-    <p id="random-title">Ti serve un consiglio?</p>
-    <div id="random-cover"></div>
-    <button id="random-button" type="button">Consiglio</button>
-</div>
 <div>
     <div id="change-background"><b>Clicca qui!</b> per provare il nuovo tema scuro. (Beta)</div>
 </div>
@@ -96,7 +91,6 @@
 <script src="script/darkTheme.js" type="text/javascript"></script>
 <script src="script/animation.js" type="text/javascript"></script>
 <script src="script/buttonEventInit.js" type="text/javascript"></script>
-<script src="script/resultPrinter.js" type="text/javascript"></script>
 </body>
 </html>
 </div>

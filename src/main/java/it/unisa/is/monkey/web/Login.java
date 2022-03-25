@@ -42,9 +42,6 @@ public class Login extends HttpServlet {
         String username = null;
         String password = null;
         RequestDispatcher rs = null;
-        MySQLUtenteDAO udao = new MySQLUtenteDAO();
-        MySQLProdottoDAO pdao = new MySQLProdottoDAO();
-        List<Utente> utenti = new ArrayList<Utente>();
         boolean usernameCorrect = false;
         synchronized(session) {
             username = request.getParameter("username");
