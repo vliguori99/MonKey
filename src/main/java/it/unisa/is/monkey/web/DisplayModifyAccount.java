@@ -15,6 +15,8 @@ import it.unisa.is.monkey.model.MySQLUtenteDAO;
 
 import java.io.Console;
 
+//Display modifica profilo lato utente
+
 @WebServlet("/DisplayModifyAccount")
 public class DisplayModifyAccount extends HttpServlet {
     private static final long serialVersionUID = 1L;

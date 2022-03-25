@@ -45,6 +45,7 @@
     <div>
         <form class="update-form" name="UpdateUserForm" onsubmit="return validateForm()"
               action="UpdateUserIntoDB" method="POST">
+
             <input type="hidden" name="id" value="<%=id%>">
             Nome: <input type="text" name="nome" value="<%=nome%>">
             <div id="nameErr"></div><br>

@@ -1,4 +1,10 @@
-/*package it.unisa.is.monkey.web;
+package it.unisa.is.monkey.web;
+
+import it.unisa.is.monkey.applicationLogic.monkeyEntita.Utente;
+import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreUtente.UserNotModifiedException;
+import it.unisa.is.monkey.applicationLogic.userManager.gestioneAccountUtente.AccountServiceUtente;
+import it.unisa.is.monkey.model.MySQLUtenteDAO;
+import it.unisa.is.monkey.applicationLogic.userManager.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,12 +15,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import it.unisa.is.monkey.applicationLogic.monkeyEntita.Utente;
-import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreUtente.UserNotModifiedException;
-import it.unisa.is.monkey.applicationLogic.userManager.gestioneAccountUtente.AccountServiceUtente;
-import it.unisa.is.monkey.model.MySQLUtenteDAO;
 
-import java.io.Console;
+//aggiorna informazioni utente lato utente
 
 @WebServlet("/UpdateProfileUserIntoDB")
 public class UpdateProfileUserIntoDB extends HttpServlet {
@@ -28,8 +30,12 @@ public class UpdateProfileUserIntoDB extends HttpServlet {
         HttpSession session = request.getSession();
 
         synchronized(session) {
+
+            AccountServiceUtente serviceUtente = new AccountServiceUtente();
+
             String id = request.getParameter("id");
             String nome = request.getParameter("nome");
+            System.out.println(id + " " + nome);
             String cognome = request.getParameter("cognome");
             String username = request.getParameter("username");
             String email = request.getParameter("email");
@@ -37,10 +43,9 @@ public class UpdateProfileUserIntoDB extends HttpServlet {
             String indirizzo = request.getParameter("indirizzo");
             String numero_carta = request.getParameter("numero_carta");
 
-            AccountServiceUtente accountService = new AccountServiceUtente();
             try {
-                accountService.modificaUtente(id, nome, cognome, username, email, psw, indirizzo, numero_carta);
-            } catch (UserNotModifiedException e) {
+                serviceUtente.modificaUtente(id, nome, cognome, username, email, psw, indirizzo, numero_carta);
+            } catch (UserNotModifiedException e){
                 e.printStackTrace();
             }
 
@@ -52,4 +57,3 @@ public class UpdateProfileUserIntoDB extends HttpServlet {
         doGet(request, response);
     }
 }
-*/

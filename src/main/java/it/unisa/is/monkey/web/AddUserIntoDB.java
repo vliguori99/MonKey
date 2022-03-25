@@ -61,7 +61,7 @@ public class AddUserIntoDB extends HttpServlet {
                 rs.forward(request, response);
                 return;
             }   catch (UserNotRegisteredException e) {
-                e.printStackTrace();
+
                 }
 
             request.setAttribute("registrationError", true);

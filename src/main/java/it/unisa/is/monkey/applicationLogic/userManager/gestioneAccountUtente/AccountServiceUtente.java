@@ -3,6 +3,7 @@ package it.unisa.is.monkey.applicationLogic.userManager.gestioneAccountUtente;
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Utente;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreUtente.UserNotDeletedException;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreUtente.UserNotModifiedException;
+import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreUtente.UserNotRegisteredException;
 import it.unisa.is.monkey.model.MySQLUtenteDAO;
 
 
@@ -13,18 +14,12 @@ public class    AccountServiceUtente implements AccountServiceUtenteInterface{
     public void modificaUtente(String id, String nome, String cognome, String username, String email,
                                String psw, String indirizzo, String numCarta) throws UserNotModifiedException {
 
-        Utente daModificare = utenteDAO.getUtente(id);
-        daModificare.setNome(nome);
-        daModificare.setCognome(cognome);
-        daModificare.setUsername(username);
-        daModificare.setEmail(email);
-        daModificare.setPsw(psw);
-        daModificare.setIndirizzo(indirizzo);
-        daModificare.setNumero_carta(numCarta);
-        if (daModificare == null){
-            throw new UserNotModifiedException("Account null. Impossibile modificare");
-        }
-        utenteDAO.updateUtente(daModificare);
+        if (utenteDAO.duplicateCheck(username, email)) {
+            throw new UserNotModifiedException("email o username già registrati");}
+
+        Utente utente = new Utente(id, nome, cognome, username, email, psw, indirizzo, numCarta, false);
+        utenteDAO.updateUtente(utente);
+
     }
 
     //??
