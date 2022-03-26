@@ -14,9 +14,6 @@ public interface ProdottiServiceAdminInterface {
 
     void rimozioneProdotto(String prodotto) throws ProductNotRemovedException;
 
-    Prodotto modificaProdotto(Prodotto daModificare, float i_prezzo_listino, float i_sconto_attuale,
-                              String i_piattaforma, String i_titolo, String i_tipologia,
-                              String i_descrizione, int i_quantita) throws ProductNotModifiedException;
 
 }
 

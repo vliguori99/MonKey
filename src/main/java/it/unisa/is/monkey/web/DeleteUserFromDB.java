@@ -1,5 +1,9 @@
 package it.unisa.is.monkey.web;
 
+import it.unisa.is.monkey.applicationLogic.adminManager.gestioneUtentiAdmin.UtentiServiceAdmin;
+import it.unisa.is.monkey.applicationLogic.adminManager.gestioneUtentiAdmin.UtentiServiceAdminInterface;
+import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreUtente.UserNotDeletedException;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,18 +15,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import it.unisa.is.monkey.model.MySQLProdottoDAO;
 
 import java.io.Console;
 
-@WebServlet("/UpdateProductIntoDB")
-public class UpdateProductIntoDB extends HttpServlet {
+@WebServlet("/DeleteUserFromDB")
+public class DeleteUserFromDB extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UpdateProductIntoDB() {
+    public DeleteUserFromDB() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,19 +38,14 @@ public class UpdateProductIntoDB extends HttpServlet {
         HttpSession session = request.getSession();
 
         synchronized(session) {
-            String codice = request.getParameter("codice");
-            MySQLProdottoDAO pdao = new MySQLProdottoDAO();
-            String titolo = request.getParameter("titolo");
-            float prezzo_listino = Float.parseFloat(request.getParameter("prezzo_listino"));
-            float sconto = Float.parseFloat(request.getParameter("sconto"));
-            float prezzo_attuale = prezzo_listino - ((prezzo_listino/100)*sconto);
-            String piattaforma = request.getParameter("piattaforma");
-            String tipologia = request.getParameter("tipologia");
-            String descrizione = request.getParameter("descrizione");
-            int quantita = Integer.parseInt(request.getParameter("quantita"));
-            pdao.updateProdotto(codice, prezzo_attuale, sconto, prezzo_listino, piattaforma, titolo,
-                    tipologia, descrizione, quantita);
-            request.getRequestDispatcher("DisplayAdminProducts").forward(request, response);
+            String id = request.getParameter("id");
+            UtentiServiceAdmin utentiAdmin = new UtentiServiceAdmin();
+            try {
+                utentiAdmin.rimozioneUtente(id);
+            } catch (UserNotDeletedException e) {
+                e.printStackTrace();
+            }
+            request.getRequestDispatcher("DisplayAdminUsers").forward(request, response);
         }
     }
 

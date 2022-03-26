@@ -39,22 +39,15 @@ public class UpdateUserIntoDB extends HttpServlet {
         HttpSession session = request.getSession();
 
         synchronized(session) {
-            String id = request.getParameter("id");
             MySQLUtenteDAO udao = new MySQLUtenteDAO();
-            String nome = request.getParameter("nome");
-            System.out.println(id + " " + nome);
-            String cognome = request.getParameter("cognome");
-            String username = request.getParameter("username");
-            String email = request.getParameter("email");
-            String psw = request.getParameter("psw");
-            String indirizzo = request.getParameter("indirizzo");
-            String numero_carta = request.getParameter("numero_carta");
             boolean amministratore = false;
-            if(request.getParameter("amministratore") != null && Boolean.parseBoolean(request.getParameter("amministratore")))
+            if(request.getParameter("amministratore") != null &&
+                    Boolean.parseBoolean(request.getParameter("amministratore")))
             {
                 amministratore = true;
             }
-            Utente u = new Utente(id, nome, cognome, username, email, psw, indirizzo, numero_carta, amministratore);
+            Utente u = new Utente(null, null, null, null, null,
+                    null, null, null, amministratore);
             udao.updateUtente(u);
             request.getRequestDispatcher("DisplayAdminUsers").forward(request, response);
         }

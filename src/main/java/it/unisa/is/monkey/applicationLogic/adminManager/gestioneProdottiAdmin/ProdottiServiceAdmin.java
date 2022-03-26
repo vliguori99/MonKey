@@ -37,26 +37,5 @@ public class ProdottiServiceAdmin implements ProdottiServiceAdminInterface {
         prodottoDAO.removeProduct(prodotto);
     }
 
-    @Override
-    public Prodotto modificaProdotto(Prodotto daModificare, float i_prezzo_listino, float i_sconto_attuale,
-                                     String i_piattaforma, String i_titolo, String i_tipologia, String i_descrizione,
-                                     int i_quantita)throws ProductNotModifiedException {
 
-        daModificare.setPrezzo_listino(i_prezzo_listino);
-        daModificare.setSconto_attuale(i_sconto_attuale);
-        daModificare.setPiattaforma(i_piattaforma);
-        daModificare.setTitolo(i_titolo);
-        daModificare.setTipologia(i_tipologia);
-        daModificare.setDescrizione(i_descrizione);
-        daModificare.setQuantita(i_quantita);
-
-        if(daModificare == null){
-            throw new ProductNotModifiedException();
-        }
-        prodottoDAO.updateProdotto(daModificare.getCodice(), daModificare.getPrezzo_attuale(),
-                i_sconto_attuale, i_prezzo_listino, i_piattaforma, i_titolo, i_tipologia,
-                i_descrizione, i_quantita);
-
-        return daModificare;
-    }
 }
