@@ -24,7 +24,6 @@ public class AccountServiceUtente implements AccountServiceUtenteInterface{
 
         Utente utente = new Utente(id, nome, cognome, username, email, psw, indirizzo, numCarta, false);
         utenteDAO.updateUtente(utente);
-
     }
 
     @Override

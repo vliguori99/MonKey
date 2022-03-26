@@ -59,7 +59,7 @@
     <div>
         <form class="update-form" name="UpdateUserForm" onsubmit="return validateForm()" action="UpdateUserIntoDB"
               method="POST">
-            <input type="hidden" name="id" value="<%=id%>">
+            <input type="hidden" name="id" id="idUtente" value="<%=id%>">
             Nome: <input type="text" name="nome" value="<%=nome%>" readonly="readonly">
             <div id="nameErr"></div><br>
             Cognome: <input type="text" name="cognome" value="<%=cognome%>" readonly="readonly">

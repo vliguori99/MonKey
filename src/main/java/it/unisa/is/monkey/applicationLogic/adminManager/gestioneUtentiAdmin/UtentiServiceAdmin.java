@@ -1,5 +1,6 @@
 package it.unisa.is.monkey.applicationLogic.adminManager.gestioneUtentiAdmin;
 
+import it.unisa.is.monkey.applicationLogic.monkeyEntita.Utente;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.ProductNotRemovedException;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreUtente.UserNotDeletedException;
 import it.unisa.is.monkey.model.MySQLProdottoDAO;
@@ -16,4 +17,20 @@ public class UtentiServiceAdmin implements UtentiServiceAdminInterface{
         }
         utenteDAO.deleteUtente(utente);
     }
+
+    @Override
+    public Utente modificaUtenteAdmin(String idUtente, boolean admin) {
+
+        Utente daModificare = utenteDAO.getUtente(idUtente);
+
+        if(daModificare.getAmministratore() != admin){
+            daModificare.setAmministratore(admin);
+            utenteDAO.updateUtente(daModificare);
+        }
+        return daModificare;
+    }
+
+
 }
+
+

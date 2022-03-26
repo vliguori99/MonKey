@@ -21,7 +21,6 @@ public class RegistrazioneService implements RegistrazioneServiceInterface {
         Utente utente = new Utente(id, nome, cognome, username, email, psw, indirizzo, numCarta, amministratore);
         utenteDAO.createUtente(utente);
        // mailSingletonSender.sendEmailCreazioneAccount(utente);
-
         return utenteDAO.getUtente(id);
     }
 }

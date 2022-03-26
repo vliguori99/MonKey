@@ -1,5 +1,6 @@
 package it.unisa.is.monkey.web;
 
+import it.unisa.is.monkey.applicationLogic.adminManager.gestioneUtentiAdmin.UtentiServiceAdmin;
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Utente;
 import it.unisa.is.monkey.model.MySQLUtenteDAO;
 
@@ -39,16 +40,10 @@ public class UpdateUserIntoDB extends HttpServlet {
         HttpSession session = request.getSession();
 
         synchronized(session) {
-            MySQLUtenteDAO udao = new MySQLUtenteDAO();
-            boolean amministratore = false;
-            if(request.getParameter("amministratore") != null &&
-                    Boolean.parseBoolean(request.getParameter("amministratore")))
-            {
-                amministratore = true;
-            }
-            Utente u = new Utente(null, null, null, null, null,
-                    null, null, null, amministratore);
-            udao.updateUtente(u);
+            boolean adminValue = Boolean.parseBoolean(request.getParameter("amministratore"));
+            String id = request.getParameter("id");
+            UtentiServiceAdmin utentiServiceAdmin = new UtentiServiceAdmin();
+            Utente utente = utentiServiceAdmin.modificaUtenteAdmin(id, adminValue);
             request.getRequestDispatcher("DisplayAdminUsers").forward(request, response);
         }
     }
