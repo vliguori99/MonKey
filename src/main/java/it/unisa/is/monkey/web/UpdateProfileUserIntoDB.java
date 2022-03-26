@@ -1,14 +1,9 @@
 package it.unisa.is.monkey.web;
 
-import it.unisa.is.monkey.applicationLogic.monkeyEntita.Utente;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreUtente.UserNotModifiedException;
-import it.unisa.is.monkey.applicationLogic.userManager.gestioneAccountUtente.AccountServiceUtente;
-import it.unisa.is.monkey.model.MySQLUtenteDAO;
-import it.unisa.is.monkey.applicationLogic.userManager.*;
+import it.unisa.is.monkey.model.gestioneAccountUtente.AccountServiceUtente;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

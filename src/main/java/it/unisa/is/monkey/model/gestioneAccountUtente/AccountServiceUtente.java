@@ -1,9 +1,8 @@
-package it.unisa.is.monkey.applicationLogic.userManager.gestioneAccountUtente;
+package it.unisa.is.monkey.model.gestioneAccountUtente;
 
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Utente;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreUtente.UserNotDeletedException;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreUtente.UserNotModifiedException;
-import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreUtente.UserNotRegisteredException;
 import it.unisa.is.monkey.model.MySQLUtenteDAO;
 
 

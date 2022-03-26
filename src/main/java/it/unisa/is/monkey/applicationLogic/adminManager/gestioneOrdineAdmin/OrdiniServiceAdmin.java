@@ -15,6 +15,7 @@ public class OrdiniServiceAdmin implements OrdiniServiceAdminInterface{
     @Override
     public List<Ordine> visualizzaOrdini(String data1, String data2, String userCode) throws UtenteNotLoggedException {
 
+
         List<Ordine> ordiniTemp = new ArrayList<Ordine>();
         List<Ordine> ordini = null;
         if (data1 == null || data1.equals("") && data2 == null || data2.equals("")) {
