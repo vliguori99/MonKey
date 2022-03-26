@@ -35,7 +35,6 @@ public class UpdateProfileUserIntoDB extends HttpServlet {
 
             String id = request.getParameter("id");
             String nome = request.getParameter("nome");
-            System.out.println(id + " " + nome);
             String cognome = request.getParameter("cognome");
             String username = request.getParameter("username");
             String email = request.getParameter("email");

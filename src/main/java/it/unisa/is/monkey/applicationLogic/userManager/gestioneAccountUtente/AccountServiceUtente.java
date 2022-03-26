@@ -13,9 +13,14 @@ public class AccountServiceUtente implements AccountServiceUtenteInterface{
     @Override
     public void modificaUtente(String id, String nome, String cognome, String username, String email,
                                String psw, String indirizzo, String numCarta) throws UserNotModifiedException {
-
+        Utente u = utenteDAO.getUtente(id);
         if (utenteDAO.duplicateCheck(username, email)) {
-            throw new UserNotModifiedException("email o username già registrati");}
+            if (email.equals(u.getEmail()) || username.equals(u.getUsername())){
+
+            }else {
+                throw new UserNotModifiedException("email o username già registrati");
+            }
+        }
 
         Utente utente = new Utente(id, nome, cognome, username, email, psw, indirizzo, numCarta, false);
         utenteDAO.updateUtente(utente);

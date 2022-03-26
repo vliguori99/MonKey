@@ -44,7 +44,7 @@
     <h1>Modifica Profilo <%=username%></h1>
     <div>
         <form class="update-form" name="UpdateUserForm" onsubmit="return validateForm()"
-              action="UpdateUserIntoDB" method="POST">
+              action="UpdateProfileUserIntoDB" method="POST">
 
             <input type="hidden" name="id" value="<%=id%>">
             Nome: <input type="text" name="nome" value="<%=nome%>">
