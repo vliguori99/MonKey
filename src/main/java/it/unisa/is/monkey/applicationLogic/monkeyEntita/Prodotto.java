@@ -2,7 +2,8 @@ package it.unisa.is.monkey.applicationLogic.monkeyEntita;
 import java.math.*;
 public class Prodotto
 {
-    public Prodotto(String i_codice, float i_prezzo_listino, float i_sconto_attuale, String i_piattaforma, String i_titolo, String i_tipologia, String i_descrizione, int i_quantita)
+    public Prodotto(String i_codice, float i_prezzo_listino, float i_sconto_attuale, String i_piattaforma,
+                    String i_titolo, String i_tipologia, String i_descrizione, int i_quantita)
     {
         codice = i_codice;
         prezzo_listino = i_prezzo_listino;

@@ -7,7 +7,7 @@ import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreUtente.UserNotRegi
 import it.unisa.is.monkey.model.MySQLUtenteDAO;
 
 
-public class    AccountServiceUtente implements AccountServiceUtenteInterface{
+public class AccountServiceUtente implements AccountServiceUtenteInterface{
 
     private MySQLUtenteDAO utenteDAO= new MySQLUtenteDAO();
     @Override
@@ -19,12 +19,6 @@ public class    AccountServiceUtente implements AccountServiceUtenteInterface{
 
         Utente utente = new Utente(id, nome, cognome, username, email, psw, indirizzo, numCarta, false);
         utenteDAO.updateUtente(utente);
-
-    }
-
-    //??
-    @Override
-    public void visualizzaUtente(Utente utente) {
 
     }
 

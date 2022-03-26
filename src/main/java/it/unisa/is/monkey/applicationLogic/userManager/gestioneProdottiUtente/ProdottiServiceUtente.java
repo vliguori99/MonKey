@@ -10,46 +10,43 @@ import it.unisa.is.monkey.model.MySQLProdottoDAO;
 import it.unisa.is.monkey.model.MySQLUtenteDAO;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class ProdottiServiceUtente implements ProdottiServiceUtenteInterface{
+public class ProdottiServiceUtente implements ProdottiServiceUtenteInterface {
 
     private MySQLProdottoDAO prodottoDAO = new MySQLProdottoDAO();
     private MySQLOrdineDAO ordineDAO = new MySQLOrdineDAO();
     private MySQLUtenteDAO utenteDAO = new MySQLUtenteDAO();
 
     @Override
-    public Ordine acquistaProdotto(Utente utente, List<Prodotto> prodotti) throws PurchaseFailedException {
+    public void acquistaProdotto(String userCode, Ordine ordine, ArrayList<Integer> quantita)
+            throws PurchaseFailedException {
+        int i = 0;
 
-        if (utente == null) {
+        if (userCode == null) {
             throw new PurchaseFailedException("Effettuare il login");
         }
-        if(prodotti.isEmpty()){
-            throw new PurchaseFailedException("Non ci sono prodotti da aquistare");
-        }
 
-        String idOrdine = ordineDAO.codOrderGenerator();
-        Ordine ordine = new Ordine();
-        ordine.setCodice(idOrdine);
-
-        SimpleDateFormat dataOrdine = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        Date data = new Date();
-        ordine.setData_ordine(dataOrdine.format(data));
-
-        float importo = 0;
-        for (Prodotto p: prodotti) {
-            importo += p.getPrezzo_attuale();
-        }
-        ordine.setImporto(importo);
-
-        ordine.setIva(22);
-
-        ordine.setUtente(utente.getId());
-
+        ordine.setCodice(ordineDAO.codOrderGenerator());
         ordineDAO.createOrder(ordine);
-        return ordine;
+
+        for(String codiceProdotto : ordine.getProdotti())
+        {
+            Prodotto prodotto = prodottoDAO.getProduct(codiceProdotto);
+            prodottoDAO.updateProdotto(prodotto.getCodice(), prodotto.getPrezzo_attuale(),
+                    prodotto.getSconto_attuale(), prodotto.getPrezzo_listino(), prodotto.getPiattaforma(),
+                    prodotto.getTitolo(), prodotto.getTipologia(), prodotto.getDescrizione(),
+                    (prodotto.getQuantita() - quantita.get(i)));
+            ordineDAO.createComposition(ordine.getCodice(), codiceProdotto, prodotto.getPrezzo_attuale(),
+                    quantita.get(i) );
+            i++;
+        }
+        prodottoDAO.removeCart(userCode);
+
     }
+
 
     @Override
     public void aggiungiAlCarrello(String prodotto, String utente, String ip, String userCode) {
@@ -98,4 +95,7 @@ public class ProdottiServiceUtente implements ProdottiServiceUtenteInterface{
         prodottoDAO.updateGameUser(-1, idProdotto, userCode, ip);
         return qCarrello;
     }
+
+
+
 }

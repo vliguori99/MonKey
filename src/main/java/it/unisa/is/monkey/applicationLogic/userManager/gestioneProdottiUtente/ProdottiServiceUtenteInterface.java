@@ -6,11 +6,13 @@ import it.unisa.is.monkey.applicationLogic.monkeyEntita.Utente;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.PurchaseFailedException;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.QuantityException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface ProdottiServiceUtenteInterface {
 
-    Ordine acquistaProdotto(Utente utente, List<Prodotto> prodotti) throws PurchaseFailedException;
+    void acquistaProdotto(String userCode , Ordine ordine, ArrayList<Integer> quantita)
+            throws PurchaseFailedException;
 
     void aggiungiAlCarrello(String prodotto, String utente, String ip, String userCode);
 

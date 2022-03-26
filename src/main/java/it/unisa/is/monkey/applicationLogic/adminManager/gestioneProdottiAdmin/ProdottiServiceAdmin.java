@@ -11,34 +11,30 @@ public class ProdottiServiceAdmin implements ProdottiServiceAdminInterface {
 
     private MySQLProdottoDAO prodottoDAO = new MySQLProdottoDAO();
     @Override
-    public Prodotto creazioneProdotto(float i_prezzo_listino, float i_sconto_attuale, String i_piattaforma,
+    public void creazioneProdotto(float i_prezzo_listino, float i_sconto_attuale, String i_piattaforma,
                                       String i_titolo, String i_tipologia, String i_descrizione, int i_quantita)
             throws ProductNotCreatedException {
-        Prodotto prodotto = new Prodotto();
-        prodotto.setCodice(prodottoDAO.codProdottoGenerator());
-        prodotto.setPrezzo_listino(i_prezzo_listino);
-        prodotto.setSconto_attuale(i_sconto_attuale);
-        prodotto.setPiattaforma(i_piattaforma);
-        prodotto.setTitolo(i_titolo);
-        prodotto.setTipologia(i_tipologia);
-        prodotto.setDescrizione(i_descrizione);
-        prodotto.setQuantita(i_quantita);
 
-        if(prodotto == null){
-            throw new ProductNotCreatedException();
+        String codice = prodottoDAO.codProdottoGenerator();
+
+        if (codice == null) {
+            throw new ProductNotCreatedException("Prodotto non valido");
         }
 
-        prodottoDAO.createProdotto(prodotto);
-        return prodotto;
+        Prodotto p = new Prodotto(codice, i_prezzo_listino, i_sconto_attuale, i_piattaforma, i_titolo,
+                i_tipologia, i_descrizione, i_quantita);
+
+        prodottoDAO.createProdotto(p);
+
+
     }
 
     @Override
-    public Prodotto rimozioneProdotto(Prodotto prodotto) throws ProductNotRemovedException {
+    public void rimozioneProdotto(String prodotto) throws ProductNotRemovedException {
         if (prodotto == null){
-            throw new ProductNotRemovedException();
+            throw new ProductNotRemovedException("Prodotto non valido");
         }
-        prodottoDAO.removeProduct(prodotto.getCodice());
-        return prodotto;
+        prodottoDAO.removeProduct(prodotto);
     }
 
     @Override
