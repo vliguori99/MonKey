@@ -13,6 +13,23 @@
         <element id="directory" name="classes">
           <element id="module-output" name="Monkey" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: de.vinado.spring:dkim-javamail:1.2.2" />
+          <element id="library" level="project" name="Maven: net.markenwerk:utils-mail-dkim:1.4.0" />
+          <element id="library" level="project" name="Maven: net.iharder:base64:2.3.9" />
+          <element id="library" level="project" name="Maven: net.markenwerk:utils-data-fetcher:4.0.2" />
+          <element id="library" level="project" name="Maven: net.markenwerk:commons-nulls:1.0.4" />
+          <element id="library" level="project" name="Maven: com.sun.mail:jakarta.mail:1.6.4" />
+          <element id="library" level="project" name="Maven: com.sun.activation:jakarta.activation:1.2.1" />
+          <element id="library" level="project" name="Maven: net.i2p.crypto:eddsa:0.3.0" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-context-support:5.2.0.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-beans:5.2.0.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-context:5.2.0.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-aop:5.2.0.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-expression:5.2.0.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-core:5.2.0.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-jcl:5.2.0.RELEASE" />
+        </element>
       </element>
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/target/Monkey-1.0-SNAPSHOT/META-INF/MANIFEST.MF" />
