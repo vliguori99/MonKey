@@ -1,6 +1,6 @@
 package it.unisa.is.monkey.applicationLogic.monkeyEntita;
 
-public class Utente implements UserAdapter {
+public class Utente {
     public Utente(String i_id, String i_nome, String i_cognome, String i_username, String i_email, String i_psw,
                   String i_indirizzo, String i_numero_carta, boolean i_amministratore) {
         id = i_id;
