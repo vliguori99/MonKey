@@ -26,10 +26,6 @@ public class OrdiniServiceAdmin implements OrdiniServiceAdminInterface{
             ordini = ordineDAO.allOrdersDateFilter(data1, data2);
         }
 
-        if (userCode == "") {
-            throw new UtenteNotLoggedException("Username non corretto");
-        }
-
         if (userCode != null && userCode != "") {
             for (Ordine o : ordini) {
                 if (o.getUtente().equals(userCode)) {
@@ -37,6 +33,10 @@ public class OrdiniServiceAdmin implements OrdiniServiceAdminInterface{
                 }
             }
             ordini = ordiniTemp;
+        }
+
+        if (userCode == "") {
+            throw new UtenteNotLoggedException("Username non corretto");
         }
         return ordini;
     }

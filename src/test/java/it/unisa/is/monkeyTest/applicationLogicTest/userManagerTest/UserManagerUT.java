@@ -7,9 +7,7 @@ import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.CartExcep
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.OrderNotFoundException;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.PurchaseFailedException;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.QuantityException;
-import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreUtente.LogoutFailedException;
-import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreUtente.UserNotRegisteredException;
-import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreUtente.UtenteNotLoggedException;
+import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreUtente.*;
 import it.unisa.is.monkey.applicationLogic.userManager.gestioneAccountUtente.AccountServiceUtente;
 import it.unisa.is.monkey.applicationLogic.userManager.gestioneAutenticazione.AutenticazioneService;
 import it.unisa.is.monkey.applicationLogic.userManager.gestioneOrdineUtente.OrdiniServiceUtente;
@@ -57,18 +55,20 @@ public class UserManagerUT {
     @InjectMocks
     private ProdottiServiceUtente prodottiServiceUtente;
 
-    private Utente utente = new Utente("19", "Paolo", "Bitta",
+    private final Utente utente = new Utente("19", "Paolo", "Bitta",
             "Contratto", "paolo@gmail.com", "1234567a",
             "Via Mercanti, 10", "1234567890123456", false);;
 
-    private Ordine ordine = new Ordine("1345863", "data", 49, 22,
+    private final Ordine ordine = new Ordine("1345863", "data", 49, 22,
             "19");
 
-    private Prodotto prodotto = new Prodotto("111111", 49, 5,
+    private final Prodotto prodotto = new Prodotto("111111", 49, 5,
             "piattaforma", "titolo", "tipologia",
             "descrizione", 5 );
 
-    private ArrayList<Integer> quantita = new ArrayList<Integer>();
+    private final ArrayList<Integer> quantita = new ArrayList<Integer>();
+    private final String username = "test";
+    private final String email = "mail@gmail.com";
     /**
      * Testa la funzionalità di Registrazione.
      *
@@ -411,4 +411,60 @@ public class UserManagerUT {
         }
     }
 
+
+    /**
+     * Testa la funzionalità relative agli account lato utente.
+     *
+     *
+     */
+
+    @Test
+    public void controllaModificaUtenteDuplicateCheckFalso() {
+        String messaggio = "email o username già utilizzati";
+        when(utenteDAO.duplicateCheck(username, email )).thenReturn(false);
+        try {
+            accountServiceUtente.modificaUtente(utente.getId(), "nome", "cognome",
+                    "username", "email@gmail.com", "psw123", "indirizzo",
+                    "1234567890123456");
+        } catch (UserNotModifiedException e) {
+            assertEquals(messaggio, e.getMessage());
+        }
+    }
+
+
+    @Test
+    public void controllaModificaUtenteDuplicateCheckTrue() {
+        String messaggio = "email o username già utilizzati";
+        when(utenteDAO.duplicateCheck(username, email)).thenReturn(true);
+        when(utenteDAO.getUtente(utente.getId())).thenReturn(utente);
+        try {
+            accountServiceUtente.modificaUtente(utente.getId(), "nome", "cognome",
+                    username, email, "psw123", "indirizzo",
+                    "1234567890123456");
+        } catch (UserNotModifiedException e) {
+            assertEquals(messaggio, e.getMessage());
+        }
+    }
+
+    @Test
+    public void controllaEliminaAccountUtenteNull() {
+        String messaggio = "errore nell'eliminazione";
+
+        try {
+            accountServiceUtente.eliminaAccount(null);
+        } catch (UserNotDeletedException e) {
+            assertEquals(messaggio, e.getMessage());
+        }
+    }
+
+    @Test
+    public void controllaEliminaAccountUtenteReale() {
+        String messaggio = "errore nell'eliminazione";
+
+        try {
+            accountServiceUtente.eliminaAccount(utente);
+        } catch (UserNotDeletedException e) {
+            assertEquals(messaggio, e.getMessage());
+        }
+    }
 }
