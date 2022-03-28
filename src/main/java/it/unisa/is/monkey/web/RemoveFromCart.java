@@ -1,5 +1,8 @@
 package it.unisa.is.monkey.web;
 
+import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.CartException;
+import it.unisa.is.monkey.applicationLogic.userManager.gestioneProdottiUtente.ProdottiServiceUtente;
+import java.io.Console;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,52 +12,54 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import it.unisa.is.monkey.applicationLogic.monkeyEntita.*;
-import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.CartException;
-import it.unisa.is.monkey.applicationLogic.userManager.gestioneProdottiUtente.ProdottiServiceUtente;
-import it.unisa.is.monkey.model.*;
 
 
-import java.io.Console;
 
+/**
+ * Classe che gestisce la rimozione di oggetti dal carrello.
+ */
 @WebServlet("/RemoveFromCart")
 public class RemoveFromCart extends HttpServlet {
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
 
-    public RemoveFromCart() {
-        super();
-        // TODO Auto-generated constructor stub
+  public RemoveFromCart() {
+    super();
+  }
+  /**
+   * Rimozione di elementi dal carrello.
+   */
+
+  protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+    HttpSession session = request.getSession();
+
+    synchronized (session) {
+      String codProdotto = request.getParameter("id");
+      String utente = (String) session.getAttribute("userCode");
+      String ip = request.getRemoteAddr();
+      ProdottiServiceUtente prodotto = new ProdottiServiceUtente();
+      try {
+        prodotto.rimuoviDalCarrello(codProdotto, utente, ip);
+      } catch (CartException e) {
+        e.printStackTrace();
+      }
+      request.getRequestDispatcher("/DisplayCart").forward(request, response);
     }
+  }
 
-    /*
-            @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-     */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // TODO Auto-generated method stub
-        HttpSession session = request.getSession();
+  /**
+ * Classe per la rimozione di oggetti dal carrello.
+ *
+ * @param request Richiede
+ * @param response Risponde
+ * @throws ServletException Eccezione servlet
+ * @throws IOException IO ecception
+   */
 
-        synchronized(session) {
-            String codProdotto = request.getParameter("id");
-            String utente = (String) session.getAttribute("userCode");
-            String ip = request.getRemoteAddr();
-                ProdottiServiceUtente prodotto = new ProdottiServiceUtente();
-            try {
-                prodotto.rimuoviDalCarrello(codProdotto, utente, ip);
-            } catch (CartException e) {
-                e.printStackTrace();
-            }
-            request.getRequestDispatcher("/DisplayCart").forward(request, response);
-        }
-    }
-
-
-    /*
-            @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-     */
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // TODO Auto-generated method stub
-        doGet(request, response);
-    }
-
+  protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+    doGet(request, response);
+  }
 }
