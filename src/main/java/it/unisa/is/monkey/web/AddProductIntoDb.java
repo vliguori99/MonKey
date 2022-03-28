@@ -2,9 +2,7 @@ package it.unisa.is.monkey.web;
 
 import it.unisa.is.monkey.applicationLogic.adminManager.gestioneProdottiAdmin.ProdottiServiceAdmin;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.ProductNotCreatedException;
-
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,7 +13,6 @@ import javax.servlet.http.HttpSession;
 /**
  * La classe fornisce i metodi per la servlet della gestione del carrello.
  *
- * @author Emanuele zini
  */
 
 @WebServlet("/AddProductIntoDB")
@@ -31,6 +28,7 @@ public class AddProductIntoDb extends HttpServlet {
   }
 
   /**
+   * La classe aggiunge un prodotto al db.
    *
    * @param request Richiede
    * @param response Risponde
@@ -56,19 +54,25 @@ public class AddProductIntoDb extends HttpServlet {
       ProdottiServiceAdmin prodottiAdmin = new ProdottiServiceAdmin();
       try {
         prodottiAdmin.creazioneProdotto(prezzoListino, sconto, piattaforma,
-        titolo, tipologia, descrizione, quantita);
+            titolo, tipologia, descrizione, quantita);
       } catch (ProductNotCreatedException e) {
-          e.printStackTrace();
+        e.printStackTrace();
       }
       request.getRequestDispatcher("DisplayAdminProducts").forward(request, response);
     }
   }
 
+  /**
+   * La classe serve ad aggiundere un prodotto al carrello.
+   *
+   * @param request Richiede
+   * @param response Risponde
+   * @throws ServletException Eccezione servlet
+   * @throws IOException IO ecception
+   */
 
-    /**
-     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-     */
-  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+  protected void doPost(HttpServletRequest request, HttpServletResponse response)
+          throws ServletException, IOException {
     doGet(request, response);
   }
 }
