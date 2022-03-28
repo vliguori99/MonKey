@@ -31,7 +31,7 @@
     int iva = ordine.getIva();
     float totaleIva = (subtotale/100) * iva;
     totaleIva = new BigDecimal(totaleIva).setScale(2, BigDecimal.ROUND_UP).floatValue();
-    float totale = ordine.getTotale_fattura();
+    float totale = ordine.getTotaleFattura();
     String nome = utente.getNome();
     String cognome = utente.getCognome();
     String email = utente.getEmail();

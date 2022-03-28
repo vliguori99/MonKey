@@ -38,7 +38,7 @@ String codProdotto, titolo, descrizione;
     List<Integer> quantitaList = (List<Integer>) request.getAttribute("quantities");
     List<Float> prezzi = (List<Float>) request.getAttribute("prices");
     List<Prodotto> prodotti = (ArrayList<Prodotto>) request.getAttribute("products");
-    totale = ordine.getTotale_fattura();
+    totale = ordine.getTotaleFattura();
     iva = ordine.getIva();
     int i = 0;
 %>

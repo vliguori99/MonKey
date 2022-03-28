@@ -23,8 +23,8 @@ public class Ordine {
     importo = oimporto;
     iva = oiva;
     totaleFattura = importo + ((importo / 100) * iva);
-    totaleFattura = new BigDecimal(totaleFattura).setScale
-            (2, BigDecimal.ROUND_UP).floatValue();
+    totaleFattura =
+            new BigDecimal(totaleFattura).setScale(2, BigDecimal.ROUND_UP).floatValue();
     utente = outente;
     prodotti = new ArrayList<String>();
   }
@@ -67,6 +67,11 @@ public class Ordine {
     dataOrdine = idataordine;
   }
 
+  /**
+   * classe che setta l'importo.
+   *
+   * @param iimporto setta l'importo
+   */
   public void setImporto(float iimporto) {
     importo = iimporto;
     totaleFattura = importo + ((importo / 100) * iva);
@@ -74,6 +79,11 @@ public class Ordine {
             new BigDecimal(totaleFattura).setScale(2, BigDecimal.ROUND_UP).floatValue();
   }
 
+  /**
+   * setta l'iva.
+   *
+   * @param iiva setta l'iva
+   */
   public void setIva(int iiva) {
     iva = iiva;
     totaleFattura = importo + ((importo / 100) * iva);

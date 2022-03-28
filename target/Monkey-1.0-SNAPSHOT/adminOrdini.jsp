@@ -62,7 +62,7 @@
             {
                 codOrdine = o.getCodice();
                 data = o.getData_ordine();
-                importo = o.getTotale_fattura();
+                importo = o.getTotaleFattura();
                 utente = o.getUtente();
         %>
         <tr>
