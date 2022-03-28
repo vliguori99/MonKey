@@ -77,7 +77,7 @@ public class Utente {
   }
 
   public void setNome(String unome) {
-     nome = unome;
+    nome = unome;
   }
 
   public void setCognome(String ucognome) {
@@ -101,7 +101,7 @@ public class Utente {
   }
 
   public void setNumeroCarta(String unumerocarta) {
-     numeroCarta = unumerocarta;
+    numeroCarta = unumerocarta;
   }
 
   public void setAmministratore(boolean uamministratore) {
