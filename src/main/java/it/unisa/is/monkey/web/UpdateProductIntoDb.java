@@ -46,8 +46,9 @@ public class UpdateProductIntoDb extends HttpServlet {
       request.getRequestDispatcher("DisplayAdminProducts").forward(request, response);
     }
   }
+
   /**
-  * Classe per l'aggiornamento dei prodotti al'interno del database
+  * Classe per l'aggiornamento dei prodotti al'interno del database.
   *
   * @param request Richiede
   * @param response Risponde
