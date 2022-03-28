@@ -5,16 +5,16 @@ import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.ProductNo
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.ProductNotModifiedException;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.ProductNotRemovedException;
 
-
+/**
+ * interfaccia servizi prodotti (admin).
+ */
 public interface ProdottiServiceAdminInterface {
 
-    void creazioneProdotto(float i_prezzo_listino, float i_sconto_attuale, String i_piattaforma, String i_titolo,
-                               String i_tipologia, String i_descrizione,
-                               int i_quantita) throws ProductNotCreatedException;
+  void creazioneProdotto(float iprezzolistino, float iscontoattuale, String
+            ipiattaforma, String ititolo, String itipologia, String idescrizione,
+                               int iquantita) throws ProductNotCreatedException;
 
-    void rimozioneProdotto(String prodotto) throws ProductNotRemovedException;
-
-
+  void rimozioneProdotto(String prodotto) throws ProductNotRemovedException;
 }
 
 

@@ -5,35 +5,37 @@ import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.ProductNo
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.ProductNotRemovedException;
 import it.unisa.is.monkey.model.MySqlProdottoDao;
 
+/**
+ * Servizi prodotti (Admin).
+ */
 public class ProdottiServiceAdmin implements ProdottiServiceAdminInterface {
+  private MySqlProdottoDao prodottoDAO = new MySqlProdottoDao();
 
-    private MySqlProdottoDao prodottoDAO = new MySqlProdottoDao();
-    @Override
-    public void creazioneProdotto(float i_prezzo_listino, float i_sconto_attuale, String i_piattaforma,
-                                      String i_titolo, String i_tipologia, String i_descrizione, int i_quantita)
+  @Override
+  public void creazioneProdotto(float iprezzolistino, float iscontoattuale,
+                                String ipiattaforma, String ititolo, String itipologia,
+                                String idescrizione, int iquantita)
             throws ProductNotCreatedException {
 
-        String codice = prodottoDAO.codProdottoGenerator();
+    String codice = prodottoDAO.codProdottoGenerator();
 
-        if (codice == null) {
-            throw new ProductNotCreatedException("Prodotto non valido");
-        }
-
-        Prodotto p = new Prodotto(codice, i_prezzo_listino, i_sconto_attuale, i_piattaforma, i_titolo,
-                i_tipologia, i_descrizione, i_quantita);
-
-        prodottoDAO.createProdotto(p);
-
-
+    if (codice == null) {
+      throw new ProductNotCreatedException("Prodotto non valido");
     }
 
-    @Override
-    public void rimozioneProdotto(String prodotto) throws ProductNotRemovedException {
-        if (prodotto == null){
-            throw new ProductNotRemovedException("Prodotto non valido");
-        }
-        prodottoDAO.removeProduct(prodotto);
+    Prodotto p = new Prodotto(codice, iprezzolistino, iscontoattuale, ipiattaforma, ititolo,
+                itipologia, idescrizione, iquantita);
+
+    prodottoDAO.createProdotto(p);
+  }
+
+  @Override
+  public void rimozioneProdotto(String prodotto) throws ProductNotRemovedException {
+    if (prodotto == null) {
+      throw new ProductNotRemovedException("Prodotto non valido");
     }
+    prodottoDAO.removeProduct(prodotto);
+  }
 
 
 }

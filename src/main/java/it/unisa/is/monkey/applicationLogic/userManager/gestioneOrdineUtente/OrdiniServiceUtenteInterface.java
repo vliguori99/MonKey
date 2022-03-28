@@ -5,6 +5,9 @@ import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.OrderNotF
 
 import java.util.List;
 
+/**
+ * interfaccia servizi ordini (utente).
+ */
 public interface OrdiniServiceUtenteInterface {
 
     List<Ordine> visualizzaOrdini(String data1, String data2, String userCode)
