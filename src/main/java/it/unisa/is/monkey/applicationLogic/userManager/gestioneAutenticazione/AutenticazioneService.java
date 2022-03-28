@@ -8,19 +8,16 @@ import it.unisa.is.monkey.model.MySQLUtenteDAO;
 import java.util.ArrayList;
 import java.util.List;
 
-  /**
-   * Questa classe serve ad autenticare l'utente
-   * @author Emanuele Zini
-   */
+/**
+ * Questa classe serve ad autenticare l'utente.
+ */
 
 public class AutenticazioneService implements AutenticazioneServiceInterface {
-
   private MySQLUtenteDAO utenteDao = new MySQLUtenteDAO();
   private MySQLProdottoDAO prodottoDao = new MySQLProdottoDAO();
 
-  /***
-   *
-   * La classe gestisce il login al sito
+  /**
+   * La classe gestisce il login al sito.
    *
    * @param username Username dell'utente
    * @param password Password dell'utente
@@ -28,8 +25,10 @@ public class AutenticazioneService implements AutenticazioneServiceInterface {
    * @return Ritorna un utente loggato
    * @throws UtenteNotLoggedException Eccezione in caso utente non si logga
    */
+
   @Override
-  public Utente login(String username, String password, String ip) throws UtenteNotLoggedException {
+  public Utente login(String username, String password, String ip) throws
+          UtenteNotLoggedException {
     if (username == "") {
       throw new UtenteNotLoggedException("Username non corretto");
     }
@@ -49,8 +48,7 @@ public class AutenticazioneService implements AutenticazioneServiceInterface {
           prodottoDao.updateCartOwner(u.getId(), ip);
           return u;
         }
-      }
-      else if (contatore == utenti.size()) {
+      } else if (contatore == utenti.size()) {
         throw new UtenteNotLoggedException("Email o password non corretti");
       }
     }

@@ -2,8 +2,7 @@ package it.unisa.is.monkey.web;
 
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Utente;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreUtente.UserNotRegisteredException;
-import it.unisa.is.monkey.applicationLogic.userManager.gestioneRegistrazione.*;
-
+import it.unisa.is.monkey.applicationLogic.userManager.gestioneRegistrazione.RegistrazioneService;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,25 +12,34 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-  @WebServlet("/AddUserIntoDB")
+/**
+ *  La servlet aggiunge un utente al db.
+ */
+@WebServlet("/AddUserIntoDB")
 public class AddUserIntoDb extends HttpServlet {
-
   private static final long serialVersionUID = 1L;
 
+  /**
+   *  La classe aggiunge un utente al db.
+   */
   public AddUserIntoDb() {
     super();
   }
 
   /**
-   * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+   * La classe aggiunge un utente al db.
+   *
+   * @param request Richiede
+   * @param response Risponde
+   * @throws ServletException Eccezione servlet
+   * @throws IOException IO ecception
    */
-  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+  protected void doGet(HttpServletRequest request, HttpServletResponse response)
+          throws ServletException, IOException {
     HttpSession session = request.getSession();
     Boolean amministratore = false;
     RequestDispatcher rs = null;
-
-    synchronized(session) {
+    synchronized (session) {
       RegistrazioneService registrazioneUtente = new RegistrazioneService();
       String nome = request.getParameter("nome");
       String cognome = request.getParameter("cognome");
@@ -39,11 +47,10 @@ public class AddUserIntoDb extends HttpServlet {
       String email = request.getParameter("email");
       String psw = request.getParameter("psw");
       String indirizzo = request.getParameter("indirizzo");
-      String numero_carta = request.getParameter("numero_carta");
-
-    try {
-      Utente u = registrazioneUtente.registrazione(nome, cognome, username, email, psw, indirizzo,
-                        numero_carta, amministratore);
+      String numeroCarta = request.getParameter("numero_carta");
+      try {
+        Utente u = registrazioneUtente.registrazione(nome, cognome, username, email, psw, indirizzo,
+                        numeroCarta, amministratore);
         if (amministratore) {
           session.setAttribute("isAdmin", true);
         }
@@ -51,9 +58,9 @@ public class AddUserIntoDb extends HttpServlet {
         rs = request.getRequestDispatcher("index.jsp");
         rs.forward(request, response);
         return;
-    } catch (UserNotRegisteredException e) {
+      } catch (UserNotRegisteredException e) {
+        e.printStackTrace();
       }
-
       request.setAttribute("registrationError", true);
       request.getRequestDispatcher("DisplayRegistration").forward(request, response);
       return;
@@ -61,12 +68,15 @@ public class AddUserIntoDb extends HttpServlet {
   }
 
   /**
-   * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+   * La classe aggiunge un utente al db.
+   *
+   * @param request Richiede
+   * @param response Risponde
+   * @throws ServletException Eccezione servlet
+   * @throws IOException IO ecception
    */
-
-  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+  protected void doPost(HttpServletRequest request, HttpServletResponse response)
+          throws ServletException, IOException {
     doGet(request, response);
   }
-
 }

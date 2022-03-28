@@ -4,9 +4,8 @@ import it.unisa.is.monkey.applicationLogic.monkeyEntita.Utente;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreUtente.LogoutFailedException;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreUtente.UtenteNotLoggedException;
 
-/***
- * Questa interfaccia fornisce i metodi per l'autenticazione
- * @author Emanuele zini
+/**
+ * Questa interfaccia fornisce i metodi per l'autenticazione.
  */
 public interface AutenticazioneServiceInterface {
 
