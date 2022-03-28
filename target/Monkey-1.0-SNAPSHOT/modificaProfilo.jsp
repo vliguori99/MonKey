@@ -24,7 +24,7 @@
         String email = utente_x.getEmail();
         String psw = utente_x.getPsw();
         String indirizzo = utente_x.getIndirizzo();
-        String numero_carta = utente_x.getNumero_carta();
+        String numero_carta = utente_x.getNumeroCarta();
     %>
     <meta charset="ISO-8859-1">
     <link rel="stylesheet" href="css/modificaProfilo.css" type="text/css">

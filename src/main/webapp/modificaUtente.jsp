@@ -37,7 +37,7 @@
         String email = u.getEmail();
         String psw = u.getPsw();
         String indirizzo = u.getIndirizzo();
-        String numero_carta = u.getNumero_carta();
+        String numero_carta = u.getNumeroCarta();
         boolean amministratore = u.getAmministratore();
     %>
     <meta charset="ISO-8859-1">
