@@ -2,11 +2,13 @@ package it.unisa.is.monkey.applicationLogic.userManager.gestioneProdottiUtente;
 
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Ordine;
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Prodotto;
+import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.CartException;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.PurchaseFailedException;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.QuantityException;
 import it.unisa.is.monkey.model.MySqlOrdineDao;
 import it.unisa.is.monkey.model.MySqlProdottoDao;
 import it.unisa.is.monkey.model.MySqlUtenteDao;
+import it.unisa.is.monkey.web.AddToCart;
 
 import java.util.ArrayList;
 
@@ -45,7 +47,9 @@ public class ProdottiServiceUtente implements ProdottiServiceUtenteInterface {
 
 
     @Override
-    public void aggiungiAlCarrello(String prodotto, String utente, String ip, String userCode) {
+    public void aggiungiAlCarrello(String prodotto, String utente, String ip, String userCode)
+            throws CartException {
+
         if(userCode != null) {
             if(!prodottoDAO.getProductIntoCart(prodotto, utente, ip)) {
                 prodottoDAO.addGameUser(prodottoDAO.codAggiuntoGenerator(), utente, prodotto, 1, null);
@@ -62,10 +66,17 @@ public class ProdottiServiceUtente implements ProdottiServiceUtenteInterface {
                 prodottoDAO.updateGameUser(1, prodotto, utente, ip);
             }
         }
+
+        //if (userCode == null) {
+        //    throw new CartException("Effettua il login");
+        //}
     }
 
     @Override
-    public void rimuoviDalCarrello(String prodotto, String utente, String ip) {
+    public void rimuoviDalCarrello(String prodotto, String utente, String ip) throws CartException {
+        if (utente == null) {
+            throw new CartException("Effettua il login");
+        }
         prodottoDAO.removeProductFromCart(prodotto, utente, ip);
     }
 

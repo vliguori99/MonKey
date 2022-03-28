@@ -1,7 +1,9 @@
 package it.unisa.is.monkeyTest.applicationLogicTest.userManagerTest;
 
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Ordine;
+import it.unisa.is.monkey.applicationLogic.monkeyEntita.Prodotto;
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Utente;
+import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.CartException;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.OrderNotFoundException;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.PurchaseFailedException;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.QuantityException;
@@ -59,11 +61,14 @@ public class UserManagerUT {
             "Contratto", "paolo@gmail.com", "1234567a",
             "Via Mercanti, 10", "1234567890123456", false);;
 
-    private Ordine ordine;
-    private ArrayList<Integer> quantita;
-    //private String username = "vincenzo99";
-    //private String email = "vlig@gmail.com";
+    private Ordine ordine = new Ordine("1345863", "data", 49, 22,
+            "19");
 
+    private Prodotto prodotto = new Prodotto("111111", 49, 5,
+            "piattaforma", "titolo", "tipologia",
+            "descrizione", 5 );
+
+    private ArrayList<Integer> quantita = new ArrayList<Integer>();
     /**
      * Testa la funzionalità di Registrazione.
      *
@@ -215,7 +220,6 @@ public class UserManagerUT {
      *
      */
 
-
     @Test
     public void controllaUtenteNull() {
 
@@ -224,6 +228,79 @@ public class UserManagerUT {
         try {
             prodottiServiceUtente.acquistaProdotto(null, ordine, quantita);
         } catch (PurchaseFailedException e) {
+            assertEquals(messaggio, e.getMessage());
+        }
+    }
+
+    @Test
+    public void controllaUtenteReale() {
+
+        String messaggio = "Effettuare il login";
+        when(ordineDao.codOrderGenerator()).thenReturn("1345863");
+        when(ordineDao.createOrder(ordine)).thenReturn(1);
+        try {
+            prodottiServiceUtente.acquistaProdotto(utente.getId(), ordine, quantita);
+        } catch (PurchaseFailedException e) {
+            assertEquals(messaggio, e.getMessage());
+        }
+    }
+
+    @Test
+    public void controllaAddToCartUserCodeReale(){
+        String messaggio = "Effettua il login";
+
+        try {
+            prodottiServiceUtente.aggiungiAlCarrello(prodotto.getCodice(), utente.getId(), "",
+                    utente.getId());
+        } catch (CartException e) {
+            assertEquals(messaggio, e.getMessage());
+        }
+
+    }
+
+    @Test
+    public void controllaAddToCartUserCodeRealeCartVuoto(){
+        String messaggio = "Effettua il login";
+        when(prodottoDAO.getProductIntoCart(prodotto.getCodice(), utente.getId(), "")).thenReturn(true);
+        try {
+            prodottiServiceUtente.aggiungiAlCarrello(prodotto.getCodice(), utente.getId(), "",
+                    utente.getId());
+        } catch (CartException e) {
+            assertEquals(messaggio, e.getMessage());
+        }
+
+    }
+
+    @Test
+    public void controllaAddToCartUserCodeNull(){
+        String messaggio = "Effettua il login";
+
+        try {
+            prodottiServiceUtente.aggiungiAlCarrello(prodotto.getCodice(), utente.getId(), "", null);
+        } catch (CartException e) {
+            assertEquals(messaggio, e.getMessage());
+        }
+
+    }
+
+    @Test
+    public void controllaRemoveFromCartUtenteNull() {
+        String messaggio = "Effettua il login";
+
+        try {
+            prodottiServiceUtente.rimuoviDalCarrello(prodotto.getCodice(), null, "");
+        } catch (CartException e) {
+            assertEquals(messaggio, e.getMessage());
+        }
+    }
+
+    @Test
+    public void controllaRemoveFromCartUtenteReale() {
+        String messaggio = "Effettua il login";
+
+        try {
+            prodottiServiceUtente.rimuoviDalCarrello(prodotto.getCodice(), utente.getId(), "");
+        } catch (CartException e) {
             assertEquals(messaggio, e.getMessage());
         }
     }
@@ -240,9 +317,31 @@ public class UserManagerUT {
     }
 
     @Test
+    public void controllaAddOneToCartPossibile() {
+        String messaggio = "Quantità prodotto terminata";
+        when(prodottoDAO.getQuantita("10")).thenReturn(5);
+        try {
+            prodottiServiceUtente.aggiungiUnoAlCarrello("10", "", "");
+        } catch (QuantityException e) {
+            assertEquals(messaggio, e.getMessage());
+        }
+    }
+
+    @Test
     public void controllaRemoveOneFromCartNonPossibile() {
         String messaggio = "Prodotto non presente nel carrello";
         when(prodottoDAO.getQuantityIntoCart("10", "", "")).thenReturn(0);
+        try {
+            prodottiServiceUtente.rimuoviUnoDalCarrello("10", "", "");
+        } catch (QuantityException e) {
+            assertEquals(messaggio, e.getMessage());
+        }
+    }
+
+    @Test
+    public void controllaRemoveOneFromCartPossibile() {
+        String messaggio = "Prodotto non presente nel carrello";
+        when(prodottoDAO.getQuantityIntoCart("10", "", "")).thenReturn(5);
         try {
             prodottiServiceUtente.rimuoviUnoDalCarrello("10", "", "");
         } catch (QuantityException e) {
@@ -268,6 +367,16 @@ public class UserManagerUT {
         }
     }
 
+    @Test
+    public void controllaVisualizzaOrdineUserCodeNulleDateNull() {
+        String messaggio = "errore nella visualizzazione dell'ordine";
+        when(utenteDAO.getUtente(utente.getId())).thenReturn(utente);
+        try {
+            ordiniServiceUtente.visualizzaOrdini(null, null, null);
+        } catch (OrderNotFoundException e) {
+            assertEquals(messaggio, e.getMessage());
+        }
+    }
 
     @Test
     public void controllaVisualizzaOrdineUserCodeNulleDateReali() {

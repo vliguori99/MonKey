@@ -1,5 +1,6 @@
 package it.unisa.is.monkey.web;
 
+import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.CartException;
 import it.unisa.is.monkey.applicationLogic.userManager.gestioneProdottiUtente.ProdottiServiceUtente;
 
 import java.io.IOException;
@@ -42,7 +43,11 @@ public class AddToCart extends HttpServlet {
       String ip = request.getRemoteAddr();
       ProdottiServiceUtente prodotto = new ProdottiServiceUtente();
       String userCode = (String) session.getAttribute("userCode");
-      prodotto.aggiungiAlCarrello(prodottoId, codiceUtente, ip, userCode);
+      try {
+        prodotto.aggiungiAlCarrello(prodottoId, codiceUtente, ip, userCode);
+      } catch (CartException e) {
+        e.printStackTrace();
+      }
       request.getRequestDispatcher("index.jsp").forward(request, response);
     }
   }

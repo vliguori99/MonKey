@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.*;
+import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.CartException;
 import it.unisa.is.monkey.applicationLogic.userManager.gestioneProdottiUtente.ProdottiServiceUtente;
 import it.unisa.is.monkey.model.*;
 
@@ -38,7 +39,11 @@ public class RemoveFromCart extends HttpServlet {
             String utente = (String) session.getAttribute("userCode");
             String ip = request.getRemoteAddr();
                 ProdottiServiceUtente prodotto = new ProdottiServiceUtente();
+            try {
                 prodotto.rimuoviDalCarrello(codProdotto, utente, ip);
+            } catch (CartException e) {
+                e.printStackTrace();
+            }
             request.getRequestDispatcher("/DisplayCart").forward(request, response);
         }
     }
