@@ -29,6 +29,7 @@ public class Login extends HttpServlet {
   /**
   * Classe che mostra il login utente.
   */
+  @SuppressWarnings("checkstyle:Indentation")
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     HttpSession session = request.getSession();
