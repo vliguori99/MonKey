@@ -1,9 +1,9 @@
 package it.unisa.is.monkey.web;
 
+import java.io.Console;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,40 +11,47 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import java.io.Console;
-
+/**
+ * la servlet serve a creare il form per il prodotto.
+ */
 @WebServlet("/DisplayAddForm")
 public class DisplayAddForm extends HttpServlet {
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    /**
-     * @see HttpServlet#HttpServlet()
+  /**
+     * la classe serve a creare il form per il prodotto.
      */
-    public DisplayAddForm() {
-        super();
-        // TODO Auto-generated constructor stub
+  public DisplayAddForm() {
+    super();
+
+  }
+
+  /**
+   * La classe serve a creare il form per il prodotto.
+   *
+   * @param request Richiede
+   * @param response Risponde
+   * @throws ServletException Eccezione servlet
+   * @throws IOException IO ecception
+   */
+  protected void doGet(HttpServletRequest request, HttpServletResponse response)
+          throws ServletException, IOException {
+    HttpSession session = request.getSession();
+    synchronized (session) {
+      request.getRequestDispatcher("aggiungiProdotto.jsp").forward(request, response);
     }
+  }
 
-    /**
-     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-     */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // TODO Auto-generated method stub
-        HttpSession session = request.getSession();
-
-        synchronized(session) {
-            request.getRequestDispatcher("aggiungiProdotto.jsp").forward(request, response);
-        }
-
-    }
-
-
-    /**
-     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-     */
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // TODO Auto-generated method stub
-        doGet(request, response);
-    }
-
+  /**
+   * La classe serve a creare il form per il prodotto.
+   *
+   * @param request Richiede
+   * @param response Risponde
+   * @throws ServletException Eccezione servlet
+   * @throws IOException IO ecception
+   */
+  protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+    doGet(request, response);
+  }
 }
