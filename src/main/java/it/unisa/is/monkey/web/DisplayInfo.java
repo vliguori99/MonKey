@@ -57,8 +57,8 @@ public class DisplayInfo extends HttpServlet {
    * @throws IOException IO ecception
    */
 
-  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,
-            IOException {
+  protected void doPost(HttpServletRequest request, HttpServletResponse response)
+          throws ServletException, IOException {
     doGet(request, response);
   }
 }
