@@ -56,7 +56,7 @@ public class AutenticazioneService implements AutenticazioneServiceInterface {
   }
 
   @Override
-  public void logout (Utente utente) throws LogoutFailedException {
+  public void logout(Utente utente) throws LogoutFailedException {
     if (utente != null) {
       throw new LogoutFailedException();
     }
