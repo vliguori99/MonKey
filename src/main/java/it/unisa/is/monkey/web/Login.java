@@ -3,9 +3,7 @@ package it.unisa.is.monkey.web;
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Utente;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreUtente.UtenteNotLoggedException;
 import it.unisa.is.monkey.applicationLogic.userManager.gestioneAutenticazione.AutenticazioneService;
-
 import java.io.IOException;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,63 +14,64 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet("/Login")
 public class Login extends HttpServlet {
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Login() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+  /**
+   * Accesso utente
+   */
+  public Login() {
+    super();
+  }
 
-    /**
-     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-     */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // TODO Auto-generated method stub
-        HttpSession session = request.getSession();
-        String username = null;
-        String password = null;
-        RequestDispatcher rs = null;
+  /**
+  * Classe che mostra il login utente
+  */
 
-        boolean usernameCorrect = false;
-        synchronized(session) {
-            username = request.getParameter("username");
-            password = request.getParameter("password");
-            String ip = request.getRemoteAddr();
-
-            AutenticazioneService autenticazione = new AutenticazioneService();
-            try {
-                Utente u = autenticazione.login(username, password, ip);
-                session.setAttribute("userCode", u.getId());
-                if (u.getAmministratore()) {
-                    session.setAttribute("isAdmin", true);
-                    rs = request.getRequestDispatcher("DisplayAdminProducts");
-                    rs.forward(request, response);
-                    return;
-                }
-                rs = request.getRequestDispatcher("index.jsp");
-                rs.forward(request, response);
-                return;
+  protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+    HttpSession session = request.getSession();
+    String username = null;
+    String password = null;
+    RequestDispatcher rs = null;
+    boolean usernameCorrect = false;
+    synchronized(session) {
+      username = request.getParameter("username");
+      password = request.getParameter("password");
+      String ip = request.getRemoteAddr();
+      AutenticazioneService autenticazione = new AutenticazioneService();
+      try {
+        Utente u = autenticazione.login(username, password, ip);
+        session.setAttribute("userCode", u.getId());
+        if (u.getAmministratore()) {
+          session.setAttribute("isAdmin", true);
+          rs = request.getRequestDispatcher("DisplayAdminProducts");
+          rs.forward(request, response);
+          return;
+        }
+        rs = request.getRequestDispatcher("index.jsp");
+        rs.forward(request, response);
+        return;
             } catch (UtenteNotLoggedException e) {
                 e.printStackTrace();
-            }
-
-            request.setAttribute("loginError", true);
-            rs = request.getRequestDispatcher("login.jsp");
-            rs.forward(request, response);
-            return;
-        }
+      }
+      request.setAttribute("loginError", true);
+      rs = request.getRequestDispatcher("login.jsp");
+      rs.forward(request, response);
+      return;
     }
-
-
-    /**
-     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+  }
+  /**
+     * Mostra a schermo il login dell'account.
+     *
+     * @param request Richiede
+     * @param response Risponde
+     * @throws ServletException Eccezione servlet
+     * @throws IOException IO ecception
      */
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // TODO Auto-generated method stub
-        doGet(request, response);
-    }
 
+  protected void doPost(HttpServletRequest request, HttpServletResponse response)
+          throws ServletException, IOException {
+
+    doGet(request, response);
+  }
 }
