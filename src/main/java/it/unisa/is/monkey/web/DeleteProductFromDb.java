@@ -2,7 +2,6 @@ package it.unisa.is.monkey.web;
 
 import it.unisa.is.monkey.applicationLogic.adminManager.gestioneProdottiAdmin.ProdottiServiceAdmin;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.ProductNotRemovedException;
-
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,13 +15,13 @@ import javax.servlet.http.HttpSession;
  */
 
 @WebServlet("/DeleteProductFromDB")
-public class DeleteProductFromDB extends HttpServlet {
+public class DeleteProductFromDb extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
   /**
    * La classe rimuove un prodotto dal db.
    */
-  public DeleteProductFromDB() {
+  public DeleteProductFromDb() {
     super();
   }
 

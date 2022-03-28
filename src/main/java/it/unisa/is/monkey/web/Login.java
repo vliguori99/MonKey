@@ -12,21 +12,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+/**
+ * La servlet gestisce il login.
+ */
 @WebServlet("/Login")
 public class Login extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
   /**
-   * Accesso utente
+   * Accesso utente.
    */
   public Login() {
     super();
   }
 
   /**
-  * Classe che mostra il login utente
+  * Classe che mostra il login utente.
   */
-
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     HttpSession session = request.getSession();
@@ -34,7 +36,7 @@ public class Login extends HttpServlet {
     String password = null;
     RequestDispatcher rs = null;
     boolean usernameCorrect = false;
-    synchronized(session) {
+    synchronized (session) {
       username = request.getParameter("username");
       password = request.getParameter("password");
       String ip = request.getRemoteAddr();
@@ -51,15 +53,16 @@ public class Login extends HttpServlet {
         rs = request.getRequestDispatcher("index.jsp");
         rs.forward(request, response);
         return;
-            } catch (UtenteNotLoggedException e) {
-                e.printStackTrace();
+      } catch (UtenteNotLoggedException e) {
+        e.printStackTrace();
       }
       request.setAttribute("loginError", true);
       rs = request.getRequestDispatcher("login.jsp");
       rs.forward(request, response);
-      return;
+    return;
     }
   }
+
   /**
      * Mostra a schermo il login dell'account.
      *
@@ -68,7 +71,6 @@ public class Login extends HttpServlet {
      * @throws ServletException Eccezione servlet
      * @throws IOException IO ecception
      */
-
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
 

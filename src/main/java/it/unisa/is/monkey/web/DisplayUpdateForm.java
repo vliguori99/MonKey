@@ -40,7 +40,7 @@ public class DisplayUpdateForm extends HttpServlet {
       MySqlProdottoDao pdao = new MySqlProdottoDao();
       Prodotto p = pdao.getProduct(codice);
       String titolo = p.getTitolo();
-      Float prezzo_listino = p.getPrezzo_listino();
+      Float prezzoListino = p.getPrezzo_listino();
       Float sconto = p.getSconto_attuale();
       String piattaforma = p.getPiattaforma();
       String tipologia = p.getTipologia();
@@ -48,7 +48,7 @@ public class DisplayUpdateForm extends HttpServlet {
       int quantita = p.getQuantita();
       request.setAttribute("codice", codice);
       request.setAttribute("titolo", titolo);
-      request.setAttribute("prezzo_listino", prezzo_listino);
+      request.setAttribute("prezzo_listino", prezzoListino);
       request.setAttribute("sconto", sconto);
       request.setAttribute("piattaforma", piattaforma);
       request.setAttribute("tipologia", tipologia);

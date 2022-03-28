@@ -20,9 +20,9 @@ import javax.servlet.http.HttpSession;
 public class DisplaySearch extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
- /**
-  * La classe mostra il display di ricerca.
-  */
+  /**
+   * La classe mostra il display di ricerca.
+   */
   public DisplaySearch() {
     super();
   }

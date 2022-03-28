@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
- /**
- * Display modifica profilo lato utente
- */
+/**
+* Display modifica profilo lato utente.
+*/
 @WebServlet("/DisplayModifyAccount")
 public class DisplayModifyAccount extends HttpServlet {
   private static final long serialVersionUID = 1L;
@@ -24,11 +24,11 @@ public class DisplayModifyAccount extends HttpServlet {
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
     HttpSession session = request.getSession();
-      synchronized(session) {
+    synchronized (session) {
       String id = request.getParameter("id");
       MySqlUtenteDao utentedao = new MySqlUtenteDao();
-      Utente utente_x = utentedao.getUtente(id);
-      request.setAttribute("utenteX", utente_x);
+      Utente utentemodificato = utentedao.getUtente(id);
+      request.setAttribute("utenteX", utentemodificato);
       request.getRequestDispatcher("modificaProfilo.jsp").forward(request, response);
     }
   }

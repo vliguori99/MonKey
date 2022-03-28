@@ -42,7 +42,7 @@ public class CreateOrder extends HttpServlet {
       String idUtente = (String) session.getAttribute("userCode");
       Ordine ordine = (Ordine) session.getAttribute("order");
       session.removeAttribute("order");
-      ArrayList<Integer> quantities = (ArrayList<Integer>)session.getAttribute("quantities");
+      ArrayList<Integer> quantities = (ArrayList<Integer>) session.getAttribute("quantities");
       session.removeAttribute("quantities");
       ProdottiServiceUtente prodottiService = new ProdottiServiceUtente();
       try {

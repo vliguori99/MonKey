@@ -6,7 +6,6 @@ import it.unisa.is.monkey.applicationLogic.monkeyEntita.Utente;
 import it.unisa.is.monkey.model.MySqlOrdineDao;
 import it.unisa.is.monkey.model.MySqlProdottoDao;
 import it.unisa.is.monkey.model.MySqlUtenteDao;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,13 +50,13 @@ public class CreateInvoice extends HttpServlet {
       String codUtente = ordine.getUtente();
       Utente utente = udao.getUtente(codUtente);
       List<String> codProdotti = odao.orderProducts(codOrdine);
-      List<Float> prezziProdotti = odao.orderPrices(codOrdine);
-      List<Integer> quantitaProdotti = odao.orderQuantities(codOrdine);
       List<String> titoliProdotti = new ArrayList<String>();
-      for(String s : codProdotti) {
+      for (String s : codProdotti) {
         Prodotto p = pdao.getProduct(s);
         titoliProdotti.add(p.getTitolo());
       }
+      List<Float> prezziProdotti = odao.orderPrices(codOrdine);
+      List<Integer> quantitaProdotti = odao.orderQuantities(codOrdine);
       request.setAttribute("ordine", ordine);
       request.setAttribute("utente", utente);
       request.setAttribute("prezzi", prezziProdotti);

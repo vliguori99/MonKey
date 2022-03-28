@@ -28,7 +28,7 @@
 <body>
 <jsp:include page="headerAdmin.jsp"/>
 <%!
-    MySQLProdottoDAO pdao = new MySQLProdottoDAO();
+    MySqlProdottoDao pdao = new MySqlProdottoDao();
         String codice, piattaforma, titolo, tipologia, descrizione;
     int quantita;
     float prezzo_attuale;
