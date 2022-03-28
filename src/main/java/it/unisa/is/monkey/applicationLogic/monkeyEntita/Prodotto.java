@@ -1,142 +1,154 @@
 package it.unisa.is.monkey.applicationLogic.monkeyEntita;
-import java.math.*;
-public class Prodotto
-{
-    public Prodotto(String i_codice, float i_prezzo_listino, float i_sconto_attuale, String i_piattaforma,
-                    String i_titolo, String i_tipologia, String i_descrizione, int i_quantita)
-    {
-        codice = i_codice;
-        prezzo_listino = i_prezzo_listino;
-        sconto_attuale = i_sconto_attuale;
-        prezzo_attuale = prezzo_listino - ((prezzo_listino/100) * sconto_attuale);
-        prezzo_attuale = new BigDecimal(prezzo_attuale).setScale(2, BigDecimal.ROUND_UP).floatValue();
-        piattaforma = i_piattaforma;
-        titolo = i_titolo;
-        tipologia = i_tipologia;
-        descrizione = i_descrizione;
-        quantita = i_quantita;
-    }
 
-    public Prodotto(String i_codice, float i_prezzo_listino, float i_sconto_attuale, String i_titolo, String i_tipologia, String i_descrizione, int i_quantita)
-    {
-        codice = i_codice;
-        prezzo_listino = i_prezzo_listino;
-        sconto_attuale = i_sconto_attuale;
-        prezzo_attuale = prezzo_listino - ((prezzo_listino/100) * sconto_attuale);
-        prezzo_attuale = new BigDecimal(prezzo_attuale).setScale(2, BigDecimal.ROUND_UP).floatValue();
-        piattaforma = null;
-        titolo = i_titolo;
-        tipologia = i_tipologia;
-        descrizione = i_descrizione;
-        quantita = i_quantita;
-    }
+import java.math.BigDecimal;
 
-    public Prodotto() {}
+/**
+ * classe che identifica il prodotto.
+ */
+public class Prodotto {
 
-    public String getCodice()
-    {
-        return codice;
-    }
+  /**
+   * Classe che identifica il progetto.
+   *
+   * @param icodice identifica il codice
+   * @param iprezzolistino identifica il prezzo
+   * @param iscontoattuale identifica lo sconto
+   * @param ipiattaforma identifica la piattaforma
+   * @param ititolo identifica il titolo
+   * @param itipologia identifica la tipologia
+   * @param idescrizione identifica la descrizione
+   * @param iquantita identifica la quantita
+   */
+  public Prodotto(String icodice, float iprezzolistino, float iscontoattuale, String ipiattaforma,
+                    String ititolo, String itipologia, String idescrizione, int iquantita) {
+    codice = icodice;
+    prezzoListino = iprezzolistino;
+    scontoAttuale = iscontoattuale;
+    prezzoAttuale = prezzoListino - ((prezzoListino / 100) * scontoAttuale);
+    prezzoAttuale =
+            new BigDecimal(prezzoAttuale).setScale(2, BigDecimal.ROUND_UP).floatValue();
+    piattaforma = ipiattaforma;
+    titolo = ititolo;
+    tipologia = itipologia;
+    descrizione = idescrizione;
+    quantita = iquantita;
+  }
 
-    public float getPrezzo_listino()
-    {
-        return prezzo_listino;
-    }
+  /**
+   * La classe identifica il prodotto.
+   *
+   * @param icodice identifica il codice
+   * @param iprezzolistino identifica il prezzo
+   * @param iscontoattuale identifica lo sconto
+   * @param ititolo identifica il titolo
+   * @param itipologia identifica la tipologia
+   * @param idescrizione identifica la descrizione
+   * @param iquantita identifica la quantita
+   */
+  public Prodotto(String icodice, float iprezzolistino, float iscontoattuale,
+                    String ititolo, String itipologia, String idescrizione, int iquantita) {
+    codice = icodice;
+    prezzoListino = iprezzolistino;
+    scontoAttuale = iscontoattuale;
+    prezzoAttuale = prezzoListino - ((prezzoListino / 100) * scontoAttuale);
+    prezzoAttuale =
+            new BigDecimal(prezzoAttuale).setScale(2, BigDecimal.ROUND_UP).floatValue();
+    piattaforma = null;
+    titolo = ititolo;
+    tipologia = itipologia;
+    descrizione = idescrizione;
+    quantita = iquantita;
+  }
 
-    public float getSconto_attuale()
-    {
-        return sconto_attuale;
-    }
+  public Prodotto() {}
 
-    public float getPrezzo_attuale()
-    {
-        return prezzo_attuale;
-    }
+  public String getCodice() {
+    return codice;
+  }
 
-    public String getPiattaforma()
-    {
-        return piattaforma;
-    }
+  public float getPrezzoListino() {
+    return prezzoListino;
+  }
 
-    public String getTitolo()
-    {
-        return titolo;
-    }
+  public float getScontoAttuale() {
+    return scontoAttuale;
+  }
 
-    public String getTipologia()
-    {
-        return tipologia;
-    }
+  public float getPrezzoAttuale() {
+    return prezzoAttuale;
+  }
 
-    public String getDescrizione()
-    {
-        return descrizione;
-    }
+  public String getPiattaforma() {
+    return piattaforma;
+  }
 
-    public int getQuantita()
-    {
-        return quantita;
-    }
+  public String getTitolo() {
+    return titolo;
+  }
 
-    public void setCodice(String i_codice)
-    {
-        codice = i_codice;
-    }
+  public String getTipologia() {
+    return tipologia;
+  }
 
-    public void setPrezzo_listino(float i_prezzo_listino)
-    {
-        prezzo_listino = i_prezzo_listino;
-        prezzo_attuale = prezzo_listino-((prezzo_listino/100)*sconto_attuale);
-    }
+  public String getDescrizione() {
+    return descrizione;
+  }
 
-    public void setSconto_attuale(float i_sconto_attuale)
-    {
-        sconto_attuale = i_sconto_attuale;
-        prezzo_attuale = prezzo_listino-((prezzo_listino/100)*sconto_attuale);
-    }
+  public int getQuantita() {
+    return quantita;
+  }
 
-    public void setPiattaforma(String i_piattaforma)
-    {
-        piattaforma = i_piattaforma;
-    }
+  public void setCodice(String icodice) {
+    codice = icodice;
+  }
 
-    public void setTitolo(String i_titolo)
-    {
-        titolo = i_titolo;
-    }
+  public void setPrezzoListino(float iprezzolistino) {
+    prezzoListino = iprezzolistino;
+    prezzoAttuale = prezzoListino - ((prezzoListino / 100) * scontoAttuale);
+  }
 
-    public void setTipologia(String i_tipologia)
-    {
-        tipologia = i_tipologia;
-    }
+  public void setScontoAttuale(float iscontoattuale) {
+    scontoAttuale = iscontoattuale;
+    prezzoAttuale = prezzoListino - ((prezzoListino / 100) * scontoAttuale);
+  }
 
-    public void setDescrizione(String i_descrizione)
-    {
-        descrizione = i_descrizione;
-    }
+  public void setPiattaforma(String ipiattaforma) {
+    piattaforma = ipiattaforma;
+  }
 
-    public void setQuantita(int i_quantita)
-    {
-        quantita = i_quantita;
-    }
+  public void setTitolo(String ititolo) {
+    titolo = ititolo;
+  }
 
-    private String codice;
-    private float prezzo_attuale;
-    private float sconto_attuale;
-    private float prezzo_listino;
-    private String piattaforma;
-    private String titolo;
-    private String tipologia;
-    private String descrizione;
-    private int quantita;
+  public void setTipologia(String itipologia) {
+    tipologia = itipologia;
+  }
+
+  public void setDescrizione(String idescrizione) {
+    descrizione = idescrizione;
+  }
+
+  public void setQuantita(int iquantita) {
+    quantita = iquantita;
+  }
+
+  private String codice;
+  private float prezzoAttuale;
+  private float scontoAttuale;
+  private float prezzoListino;
+  private String piattaforma;
+  private String titolo;
+  private String tipologia;
+  private String descrizione;
+  private int quantita;
 
 
-    private static final String TITOLO_REGEX = "^.{1,50}$";
-    private static final String PREZZO_LISTINO_REGEX = "^[0-9\\s]{1,7}[,.]{0,1}[0-9\\s]{0,2}$";
-    private static final String SCONTO_REGEX = "^[0-9\\s]{1,3}$";
-    private static final String PIATTAFORMA_REGEX = "^[0-9a-zA-Z\\s]{1,20}$";
-    private static final String TIPOLOGIA_REGEX = "^[0-9a-zA-Z\\s]{1,20}$";
-    private static final String DESCRIZIONE_REGEX = "^.{1,300}$";
-    private static final String QUANTITA_REGEX = "^[0-9\\s]{1,8}$";
+  private static final String TITOLO_REGEX = "^.{1,50}$";
+  private static final String PREZZO_LISTINO_REGEX = "^[0-9\\s]{1,7}[,.]{0,1}[0-9\\s]{0,2}$";
+  private static final String SCONTO_REGEX = "^[0-9\\s]{1,3}$";
+  private static final String PIATTAFORMA_REGEX = "^[0-9a-zA-Z\\s]{1,20}$";
+  private static final String TIPOLOGIA_REGEX = "^[0-9a-zA-Z\\s]{1,20}$";
+  private static final String DESCRIZIONE_REGEX = "^.{1,300}$";
+  private static final String QUANTITA_REGEX = "^[0-9\\s]{1,8}$";
 
 }

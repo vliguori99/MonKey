@@ -33,11 +33,11 @@ public class ProdottiServiceUtente implements ProdottiServiceUtenteInterface {
 
     for (String codiceProdotto : ordine.getProdotti()) {
       Prodotto prodotto = prodottoDao.getProduct(codiceProdotto);
-      prodottoDao.updateProdotto(prodotto.getCodice(), prodotto.getPrezzo_attuale(),
-             prodotto.getSconto_attuale(), prodotto.getPrezzo_listino(), prodotto.getPiattaforma(),
+      prodottoDao.updateProdotto(prodotto.getCodice(), prodotto.getPrezzoAttuale(),
+             prodotto.getScontoAttuale(), prodotto.getPrezzoListino(), prodotto.getPiattaforma(),
              prodotto.getTitolo(), prodotto.getTipologia(), prodotto.getDescrizione(),
              (prodotto.getQuantita() - quantita.get(i)));
-      ordineDao.createComposition(ordine.getCodice(), codiceProdotto, prodotto.getPrezzo_attuale(),
+      ordineDao.createComposition(ordine.getCodice(), codiceProdotto, prodotto.getPrezzoAttuale(),
               quantita.get(i));
       i++;
     }
@@ -76,15 +76,15 @@ public class ProdottiServiceUtente implements ProdottiServiceUtenteInterface {
   @Override
   public int aggiungiUnoAlCarrello(String idProdotto, String usercode, String ip)
           throws QuantityException {
-    int qProdotto = -1;
-    int qCarrello = -1;
-    qProdotto = prodottoDao.getQuantita(idProdotto);
-    qCarrello = prodottoDao.getQuantitaIntoCart(idProdotto, usercode, ip);
-    if (qProdotto == qCarrello) {
+    int qprodotto = -1;
+    int qcarrello = -1;
+    qprodotto = prodottoDao.getQuantita(idProdotto);
+    qcarrello = prodottoDao.getQuantitaIntoCart(idProdotto, usercode, ip);
+    if (qprodotto == qcarrello) {
       throw new QuantityException("Quantità prodotto terminata");
     }
     prodottoDao.updateGameUser(1, idProdotto, usercode, ip);
-    return qCarrello;
+    return qcarrello;
   }
 
   @Override

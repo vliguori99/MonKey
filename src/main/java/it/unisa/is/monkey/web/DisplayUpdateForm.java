@@ -40,8 +40,8 @@ public class DisplayUpdateForm extends HttpServlet {
       MySqlProdottoDao pdao = new MySqlProdottoDao();
       Prodotto p = pdao.getProduct(codice);
       String titolo = p.getTitolo();
-      Float prezzoListino = p.getPrezzo_listino();
-      Float sconto = p.getSconto_attuale();
+      Float prezzoListino = p.getPrezzoListino();
+      Float sconto = p.getScontoAttuale();
       String piattaforma = p.getPiattaforma();
       String tipologia = p.getTipologia();
       String descrizione = p.getDescrizione();

@@ -48,9 +48,9 @@ else
         codice=p.getCodice();
         tipologia = p.getTipologia();
         titolo = p.getTitolo();
-        prezzo_attuale = p.getPrezzo_attuale();
-        sconto_attuale = p.getSconto_attuale();
-        prezzo_listino = p.getPrezzo_listino();
+        prezzo_attuale = p.getPrezzoAttuale();
+        sconto_attuale = p.getScontoAttuale();
+        prezzo_listino = p.getPrezzoListino();
         prezzo_attuale = new BigDecimal(prezzo_attuale).setScale(2, BigDecimal.ROUND_UP).floatValue();
         quantita = p.getQuantita();
         if(quantita > 0)

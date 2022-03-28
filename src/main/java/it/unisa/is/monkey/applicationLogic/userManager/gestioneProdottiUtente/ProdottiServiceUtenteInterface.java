@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public interface ProdottiServiceUtenteInterface {
 
-  void acquistaProdotto(String userCode , Ordine ordine, ArrayList<Integer> quantita)
+  void acquistaProdotto(String userCode, Ordine ordine, ArrayList<Integer> quantita)
           throws PurchaseFailedException;
 
   void aggiungiAlCarrello(String prodotto, String utente, String ip, String userCode)

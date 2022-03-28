@@ -54,9 +54,9 @@
             codice = x.getCodice();
             titolo = x.getTitolo();
             tipologia = x.getTipologia();
-            prezzoAttuale = x.getPrezzo_attuale();
-            scontoAttuale = x.getSconto_attuale();
-            prezzoListino = x.getPrezzo_listino();
+            prezzoAttuale = x.getPrezzoAttuale();
+            scontoAttuale = x.getScontoAttuale();
+            prezzoListino = x.getPrezzoListino();
             prezzoAttuale = new BigDecimal(prezzoAttuale).setScale(2, BigDecimal.ROUND_UP).floatValue();
             quantita = x.getQuantita();
             if (quantita > 0) {%>

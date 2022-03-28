@@ -391,9 +391,9 @@ public class MySqlProdottoDao
             con = MySqlDao.createConnection();
             statement = con.prepareStatement(CREATE_PRODUCT, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, prodotto.getCodice());
-            statement.setFloat(2, prodotto.getPrezzo_attuale());
-            statement.setFloat(3, prodotto.getSconto_attuale());
-            statement.setFloat(4, prodotto.getPrezzo_listino());
+            statement.setFloat(2, prodotto.getPrezzoAttuale());
+            statement.setFloat(3, prodotto.getScontoAttuale());
+            statement.setFloat(4, prodotto.getPrezzoListino());
             statement.setString(5, prodotto.getPiattaforma());
             statement.setString(6, prodotto.getTitolo());
             statement.setString(7, prodotto.getTipologia());

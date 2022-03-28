@@ -33,9 +33,9 @@ String codice, titolo, tipologia, piattaforma, descrizione;
     piattaforma = p.getPiattaforma();
     descrizione = p.getDescrizione();
     quantita = p.getQuantita();
-    prezzo_listino = p.getPrezzo_listino();
-    sconto = p.getSconto_attuale();
-    prezzo_attuale = p.getPrezzo_attuale();
+    prezzo_listino = p.getPrezzoListino();
+    sconto = p.getScontoAttuale();
+    prezzo_attuale = p.getPrezzoAttuale();
 %>
 <head>
     <meta charset="ISO-8859-1">

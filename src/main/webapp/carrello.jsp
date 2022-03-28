@@ -55,9 +55,9 @@
             codice=p.getCodice();
             tipologia = p.getTipologia();
             titolo = p.getTitolo();
-            prezzo_attuale = p.getPrezzo_attuale();
-            sconto_attuale = p.getSconto_attuale();
-            prezzo_listino = p.getPrezzo_listino();
+            prezzo_attuale = p.getPrezzoAttuale();
+            sconto_attuale = p.getScontoAttuale();
+            prezzo_listino = p.getPrezzoListino();
             totale = totale + (prezzo_attuale * quantities.get(i));
             totale = new BigDecimal(totale).setScale(2, BigDecimal.ROUND_UP).floatValue();
     %>

@@ -53,7 +53,7 @@
             {
                 codice = p.getCodice();
                 titolo = p.getTitolo();
-                prezzo_attuale = p.getPrezzo_attuale();
+                prezzo_attuale = p.getPrezzoAttuale();
                 prezzo_attuale = new BigDecimal(prezzo_attuale).setScale(2, BigDecimal.ROUND_UP).floatValue();
                 quantita = p.getQuantita();
         %>
