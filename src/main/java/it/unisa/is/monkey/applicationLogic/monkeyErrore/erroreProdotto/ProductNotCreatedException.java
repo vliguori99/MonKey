@@ -1,13 +1,18 @@
 package it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto;
 
-public class ProductNotCreatedException extends Exception{
+/**
+ * Eccezione errore nella creazione del prodotto.
+ */
 
-    private static String MESSAGGIO_DEFAULT = "errore nella creazione del prodotto";
-    public ProductNotCreatedException(){
-        super(MESSAGGIO_DEFAULT);
-    }
+public class ProductNotCreatedException extends Exception {
 
-    public ProductNotCreatedException(String messaggio){
-        super(messaggio);
-    }
+  private static String MESSAGGIO_DEFAULT = "errore nella creazione del prodotto";
+
+  public ProductNotCreatedException() {
+    super(MESSAGGIO_DEFAULT);
+  }
+
+  public ProductNotCreatedException(String messaggio) {
+    super(messaggio);
+  }
 }
