@@ -4,8 +4,8 @@ import it.unisa.is.monkey.applicationLogic.monkeyEntita.Ordine;
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Prodotto;
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Utente;
 import it.unisa.is.monkey.model.MySqlOrdineDao;
-import it.unisa.is.monkey.model.MySQLProdottoDAO;
-import it.unisa.is.monkey.model.MySQLUtenteDAO;
+import it.unisa.is.monkey.model.MySqlProdottoDao;
+import it.unisa.is.monkey.model.MySqlUtenteDao;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -45,8 +45,8 @@ public class CreateInvoice extends HttpServlet {
     synchronized (session) {
       String codOrdine = request.getParameter("codice");
       MySqlOrdineDao odao = new MySqlOrdineDao();
-      MySQLUtenteDAO udao = new MySQLUtenteDAO();
-      MySQLProdottoDAO pdao = new MySQLProdottoDAO();
+      MySqlUtenteDao udao = new MySqlUtenteDao();
+      MySqlProdottoDao pdao = new MySqlProdottoDao();
       Ordine ordine = odao.getOrder(codOrdine);
       String codUtente = ordine.getUtente();
       Utente utente = udao.getUtente(codUtente);

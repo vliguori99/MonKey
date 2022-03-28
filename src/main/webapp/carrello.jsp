@@ -29,7 +29,7 @@
 <h1 class="cart-text">Carrello: </h1>
 <div class="main-container">
     <%!
-        MySQLProdottoDAO pdao = new MySQLProdottoDAO();
+        MySqlProdottoDao pdao = new MySqlProdottoDao();
             String codice, piattaforma, titolo, tipologia, descrizione;
         int quantita;
             float prezzo_attuale, sconto_attuale, prezzo_listino;

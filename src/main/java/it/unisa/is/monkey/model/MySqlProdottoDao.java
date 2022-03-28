@@ -1,7 +1,7 @@
 package it.unisa.is.monkey.model;
 
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Prodotto;
-import utils.MySQLDAO;
+import utils.MySqlDao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.*;
 
-public class MySQLProdottoDAO
+public class MySqlProdottoDao
 {
     //Aggiunta di un prodotto
     private static final String CREATE_PRODUCT="INSERT INTO prodotto (codice, prezzo_attuale, sconto_attuale, prezzo_listino, piattaforma, titolo, tipologia, descrizione, quantita) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -75,7 +75,7 @@ public class MySQLProdottoDAO
         ResultSet result = null;
         int quant = -1;
         try {
-            con = MySQLDAO.createConnection();
+            con = MySqlDao.createConnection();
             statement = con.prepareStatement(READ_PRODUCT);
             statement.setString(1, codice);
             statement.execute();
@@ -114,7 +114,7 @@ public class MySQLProdottoDAO
         int quant = -1;
         Prodotto prodotto = null;
         try {
-            con = MySQLDAO.createConnection();
+            con = MySqlDao.createConnection();
             statement = con.prepareStatement(READ_PRODUCT);
             statement.setString(1, codice);
             statement.execute();
@@ -152,7 +152,7 @@ public class MySQLProdottoDAO
         ResultSet result = null;
         int quant = -1;
         try {
-            con = MySQLDAO.createConnection();
+            con = MySqlDao.createConnection();
             statement = con.prepareStatement(READ_PRODUCT_INTO_CART);
             statement.setString(1, prodotto);
             statement.setString(2, utente);
@@ -196,7 +196,7 @@ public class MySQLProdottoDAO
         String ricerca = search;
 
         try {
-            con = MySQLDAO.createConnection();
+            con = MySqlDao.createConnection();
             statement = con.prepareStatement(READ_ALL_PRODUCTS);
             statement.execute();
             result = statement.getResultSet();
@@ -248,7 +248,7 @@ public class MySQLProdottoDAO
         ResultSet result = null;
 
         try {
-            con = MySQLDAO.createConnection();
+            con = MySqlDao.createConnection();
             statement = con.prepareStatement(READ_ALL_PRODUCTS);
             statement.execute();
             result = statement.getResultSet();
@@ -291,7 +291,7 @@ public class MySQLProdottoDAO
         ResultSet result = null;
 
         try {
-            con = MySQLDAO.createConnection();
+            con = MySqlDao.createConnection();
             statement = con.prepareStatement(READ_PRODUCT_INTO_A_CART);
             statement.setString(1, utente);
             statement.setString(2, ip);
@@ -346,7 +346,7 @@ public class MySQLProdottoDAO
         ResultSet result = null;
 
         try {
-            con = MySQLDAO.createConnection();
+            con = MySqlDao.createConnection();
             statement = con.prepareStatement(READ_PRODUCT_INTO_CART);
             statement.setString(1, id_prodotto);
             statement.setString(2, id_utente);
@@ -388,7 +388,7 @@ public class MySQLProdottoDAO
         PreparedStatement statement = null;
         ResultSet result = null;
         try {
-            con = MySQLDAO.createConnection();
+            con = MySqlDao.createConnection();
             statement = con.prepareStatement(CREATE_PRODUCT, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, prodotto.getCodice());
             statement.setFloat(2, prodotto.getPrezzo_attuale());
@@ -435,7 +435,7 @@ public class MySQLProdottoDAO
         Connection con = null;
         PreparedStatement statement = null;
         try {
-            con = MySQLDAO.createConnection();
+            con = MySqlDao.createConnection();
             statement = con.prepareStatement(UPDATE_PRODUCT);
             statement.setFloat(1, prezzo_attuale);
             statement.setFloat(2, sconto_attuale);
@@ -478,7 +478,7 @@ public class MySQLProdottoDAO
         boolean uguali = false;
         try
         {
-            con = MySQLDAO.createConnection();
+            con = MySqlDao.createConnection();
             statement = con.prepareStatement(READ_PRODUCT_INTO_EVERY_CART);
             statement.execute();
             result = statement.getResultSet();
@@ -528,7 +528,7 @@ public class MySQLProdottoDAO
         boolean uguali = false;
         try
         {
-            con = MySQLDAO.createConnection();
+            con = MySqlDao.createConnection();
             statement = con.prepareStatement(READ_ALL_PRODUCTS);
             statement.execute();
             result = statement.getResultSet();
@@ -572,7 +572,7 @@ public class MySQLProdottoDAO
         PreparedStatement statement = null;
 
         try {
-            con = MySQLDAO.createConnection();
+            con = MySqlDao.createConnection();
             statement = con.prepareStatement(ADD_NEW_PRODUCT_TO_CART);
             statement.setString(1, codice);
             statement.setString(2, utente);
@@ -607,7 +607,7 @@ public class MySQLProdottoDAO
         PreparedStatement statement = null;
 
         try {
-            con = MySQLDAO.createConnection();
+            con = MySqlDao.createConnection();
             statement = con.prepareStatement(UPDATE_QUANTITY_PRODUCT_INTO_CART);
             statement.setInt(1, quantita);
             statement.setString(2, prodotto);
@@ -678,7 +678,7 @@ public class MySQLProdottoDAO
         ArrayList<Integer> ipQuantities = new ArrayList<Integer>();
         Integer quantita = null;
         try {
-            con = MySQLDAO.createConnection();
+            con = MySqlDao.createConnection();
             statement = con.prepareStatement(SELECT_PRODUCTS_FROM_IP_CART);
             statement.setString(1, ip);
             statement.execute();
@@ -775,7 +775,7 @@ public class MySQLProdottoDAO
         ResultSet result = null;
         ArrayList<Integer> quantita = new ArrayList<Integer>();
         try {
-            con = MySQLDAO.createConnection();
+            con = MySqlDao.createConnection();
             statement = con.prepareStatement(READ_PRODUCT_INTO_A_CART);
 
             statement.setString(1, utente);
@@ -813,7 +813,7 @@ public class MySQLProdottoDAO
         ResultSet result = null;
 
         try {
-            con = MySQLDAO.createConnection();
+            con = MySqlDao.createConnection();
             statement = con.prepareStatement(READ_PRODUCT_INTO_CART);
 
             statement.setString(1, prodotto);
@@ -853,7 +853,7 @@ public class MySQLProdottoDAO
         PreparedStatement statement = null;
 
         try {
-            con = MySQLDAO.createConnection();
+            con = MySqlDao.createConnection();
             statement = con.prepareStatement(DECREASE_QUANTITY_PRODUCT_INTO_CART);
 
             statement.setString(1, prodotto);
@@ -888,7 +888,7 @@ public class MySQLProdottoDAO
         PreparedStatement statement = null;
 
         try {
-            con = MySQLDAO.createConnection();
+            con = MySqlDao.createConnection();
             statement = con.prepareStatement(DELETE_PRODUCT_FROM_CART);
 
             statement.setString(1, prodotto);
@@ -924,7 +924,7 @@ public class MySQLProdottoDAO
         PreparedStatement statement = null;
 
         try {
-            con = MySQLDAO.createConnection();
+            con = MySqlDao.createConnection();
             statement = con.prepareStatement(DELETE_CART);
             statement.setString(1, utente);
             statement.execute();
@@ -956,7 +956,7 @@ public class MySQLProdottoDAO
         PreparedStatement statement = null;
 
         try {
-            con = MySQLDAO.createConnection();
+            con = MySqlDao.createConnection();
             statement = con.prepareStatement(DELETE_PRODUCT);
             statement.setString(1, prodotto);
             statement.execute();

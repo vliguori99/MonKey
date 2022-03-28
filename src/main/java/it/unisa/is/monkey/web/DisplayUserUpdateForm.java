@@ -1,8 +1,6 @@
 package it.unisa.is.monkey.web;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,9 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Utente;
-import it.unisa.is.monkey.model.MySQLUtenteDAO;
-
-import java.io.Console;
+import it.unisa.is.monkey.model.MySqlUtenteDao;
 
 //Display modifica utente lato admin
 
@@ -39,7 +35,7 @@ public class DisplayUserUpdateForm extends HttpServlet {
 
         synchronized(session) {
             String id = request.getParameter("id");
-            MySQLUtenteDAO udao = new MySQLUtenteDAO();
+            MySqlUtenteDao udao = new MySqlUtenteDao();
             Utente u = udao.getUtente(id);
             request.setAttribute("user", u);
             request.getRequestDispatcher("modificaUtente.jsp").forward(request, response);

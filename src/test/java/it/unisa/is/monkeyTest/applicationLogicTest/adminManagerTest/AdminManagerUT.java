@@ -10,8 +10,8 @@ import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.ProductNo
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.ProductNotRemovedException;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreUtente.UtenteNotLoggedException;
 import it.unisa.is.monkey.model.MySqlOrdineDao;
-import it.unisa.is.monkey.model.MySQLProdottoDAO;
-import it.unisa.is.monkey.model.MySQLUtenteDAO;
+import it.unisa.is.monkey.model.MySqlProdottoDao;
+import it.unisa.is.monkey.model.MySqlUtenteDao;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -26,9 +26,9 @@ import static org.mockito.Mockito.when;
 public class AdminManagerUT {
 
     @Mock
-    private MySQLUtenteDAO utenteDao;
+    private MySqlUtenteDao utenteDao;
     @Mock
-    private MySQLProdottoDAO prodottoDao;
+    private MySqlProdottoDao prodottoDao;
     @Mock
     private MySqlOrdineDao ordineDao;
 

@@ -2,14 +2,12 @@ package it.unisa.is.monkey.applicationLogic.adminManager.gestioneProdottiAdmin;
 
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Prodotto;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.ProductNotCreatedException;
-import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.ProductNotModifiedException;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.ProductNotRemovedException;
-import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreUtente.UserNotDeletedException;
-import it.unisa.is.monkey.model.MySQLProdottoDAO;
+import it.unisa.is.monkey.model.MySqlProdottoDao;
 
 public class ProdottiServiceAdmin implements ProdottiServiceAdminInterface {
 
-    private MySQLProdottoDAO prodottoDAO = new MySQLProdottoDAO();
+    private MySqlProdottoDao prodottoDAO = new MySqlProdottoDao();
     @Override
     public void creazioneProdotto(float i_prezzo_listino, float i_sconto_attuale, String i_piattaforma,
                                       String i_titolo, String i_tipologia, String i_descrizione, int i_quantita)

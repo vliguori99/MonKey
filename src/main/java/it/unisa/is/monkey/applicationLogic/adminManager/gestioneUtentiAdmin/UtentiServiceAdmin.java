@@ -1,14 +1,12 @@
 package it.unisa.is.monkey.applicationLogic.adminManager.gestioneUtentiAdmin;
 
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Utente;
-import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.ProductNotRemovedException;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreUtente.UserNotDeletedException;
-import it.unisa.is.monkey.model.MySQLProdottoDAO;
-import it.unisa.is.monkey.model.MySQLUtenteDAO;
+import it.unisa.is.monkey.model.MySqlUtenteDao;
 
 public class UtentiServiceAdmin implements UtentiServiceAdminInterface{
 
-    private MySQLUtenteDAO utenteDAO = new MySQLUtenteDAO();
+    private MySqlUtenteDao utenteDAO = new MySqlUtenteDao();
 
     @Override
     public void rimozioneUtente(String utente) throws UserNotDeletedException {

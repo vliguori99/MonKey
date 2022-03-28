@@ -1,7 +1,7 @@
 package it.unisa.is.monkey.web;
 
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Prodotto;
-import it.unisa.is.monkey.model.MySQLProdottoDAO;
+import it.unisa.is.monkey.model.MySqlProdottoDao;
 
 import java.io.IOException;
 import java.util.List;
@@ -34,7 +34,7 @@ public class DisplayAdminProducts extends HttpServlet {
         HttpSession session = request.getSession();
 
         synchronized(session) {
-            MySQLProdottoDAO pdao = new MySQLProdottoDAO();
+            MySqlProdottoDao pdao = new MySqlProdottoDao();
             List<Prodotto> products = pdao.getAllProducts();
             request.setAttribute("products", products);
             RequestDispatcher rs = request.getRequestDispatcher("adminProdotti.jsp");

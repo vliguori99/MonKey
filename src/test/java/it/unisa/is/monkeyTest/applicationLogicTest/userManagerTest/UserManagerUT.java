@@ -13,9 +13,10 @@ import it.unisa.is.monkey.applicationLogic.userManager.gestioneAutenticazione.Au
 import it.unisa.is.monkey.applicationLogic.userManager.gestioneOrdineUtente.OrdiniServiceUtente;
 import it.unisa.is.monkey.applicationLogic.userManager.gestioneProdottiUtente.ProdottiServiceUtente;
 import it.unisa.is.monkey.applicationLogic.userManager.gestioneRegistrazione.RegistrazioneService;
+
+import it.unisa.is.monkey.model.MySqlProdottoDao;
+import it.unisa.is.monkey.model.MySqlUtenteDao;
 import it.unisa.is.monkey.model.MySqlOrdineDao;
-import it.unisa.is.monkey.model.MySQLProdottoDAO;
-import it.unisa.is.monkey.model.MySQLUtenteDAO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -32,9 +33,9 @@ import static org.mockito.Mockito.when;
 public class UserManagerUT {
 
     @Mock
-    private MySQLUtenteDAO utenteDAO;
+    private MySqlUtenteDao utenteDAO;
     @Mock
-    private MySQLProdottoDAO prodottoDAO;
+    private MySqlProdottoDao prodottoDAO;
     @Mock
     private MySqlOrdineDao ordineDao;
 
@@ -266,6 +267,7 @@ public class UserManagerUT {
             assertEquals(messaggio, e.getMessage());
         }
     }
+
 
     @Test
     public void controllaVisualizzaOrdineUserCodeNulleDateReali() {

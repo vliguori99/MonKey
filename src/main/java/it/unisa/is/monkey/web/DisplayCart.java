@@ -1,7 +1,6 @@
 package it.unisa.is.monkey.web;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -37,7 +36,7 @@ public class DisplayCart extends HttpServlet {
         synchronized(session) {
             String utente = (String) session.getAttribute("userCode");
             String ip = request.getRemoteAddr();
-            MySQLProdottoDAO pdao = new MySQLProdottoDAO();
+            MySqlProdottoDao pdao = new MySqlProdottoDao();
             List<Prodotto> cartList = pdao.getAllProductsIntoCart(utente, ip);
             List<Integer> quantities = pdao.getQuantities(utente, ip);
             request.setAttribute("list", cartList);

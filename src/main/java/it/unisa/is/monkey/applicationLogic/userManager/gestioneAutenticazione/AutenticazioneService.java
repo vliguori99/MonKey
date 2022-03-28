@@ -3,8 +3,8 @@ package it.unisa.is.monkey.applicationLogic.userManager.gestioneAutenticazione;
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Utente;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreUtente.LogoutFailedException;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreUtente.UtenteNotLoggedException;
-import it.unisa.is.monkey.model.MySQLProdottoDAO;
-import it.unisa.is.monkey.model.MySQLUtenteDAO;
+import it.unisa.is.monkey.model.MySqlProdottoDao;
+import it.unisa.is.monkey.model.MySqlUtenteDao;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,8 +13,8 @@ import java.util.List;
  */
 
 public class AutenticazioneService implements AutenticazioneServiceInterface {
-  private MySQLUtenteDAO utenteDao = new MySQLUtenteDAO();
-  private MySQLProdottoDAO prodottoDao = new MySQLProdottoDAO();
+  private MySqlUtenteDao utenteDao = new MySqlUtenteDao();
+  private MySqlProdottoDao prodottoDao = new MySqlProdottoDao();
 
   /**
    * La classe gestisce il login al sito.

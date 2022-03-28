@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 
-public class MySQLDAO {
+public class MySqlDao {
 
     /** la classe driver */
     public static final String DRIVER = "com.mysql.cj.jdbc.Driver";

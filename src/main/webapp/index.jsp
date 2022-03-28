@@ -8,7 +8,7 @@
     }
 %>
 
-<%@ page contentType="text/html; charset=ISO-8859-1" language="java" import="it.unisa.is.monkey.model.*, utils.MySQLDAO"
+<%@ page contentType="text/html; charset=ISO-8859-1" language="java" import="it.unisa.is.monkey.model.*, utils.MySqlDao"
          pageEncoding="ISO-8859-1"%>
 <%@ page import="it.unisa.is.monkey.applicationLogic.monkeyEntita.Prodotto" %>
 <%@ page import="java.util.List" %>
@@ -48,7 +48,7 @@
             float prezzoAttuale,scontoAttuale,prezzoListino;
     %>
     <%
-        MySQLProdottoDAO prodottoDAO = new MySQLProdottoDAO();
+        MySqlProdottoDao prodottoDAO = new MySqlProdottoDao();
         List<Prodotto> prodotti = prodottoDAO.getAllProducts();
         for (Prodotto x : prodotti) {
             codice = x.getCodice();

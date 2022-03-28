@@ -1,10 +1,9 @@
 package it.unisa.is.monkey.web;
 
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Utente;
-import it.unisa.is.monkey.model.MySQLUtenteDAO;
+import it.unisa.is.monkey.model.MySqlUtenteDao;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -38,7 +37,7 @@ public class DisplayAdminUsers extends HttpServlet {
         HttpSession session = request.getSession();
 
         synchronized(session) {
-            MySQLUtenteDAO udao = new MySQLUtenteDAO();
+            MySqlUtenteDao udao = new MySqlUtenteDao();
             List<Utente> users = udao.getAllUtenti();
             request.setAttribute("users", users);
             RequestDispatcher rs = request.getRequestDispatcher("adminUtenti.jsp");

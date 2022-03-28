@@ -2,11 +2,8 @@ package it.unisa.is.monkey.web;
 
 import it.unisa.is.monkey.applicationLogic.adminManager.gestioneProdottiAdmin.ProdottiServiceAdmin;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.ProductNotRemovedException;
-import it.unisa.is.monkey.model.MySQLProdottoDAO;
+
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.io.Console;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

@@ -16,7 +16,7 @@ import it.unisa.is.monkey.applicationLogic.monkeyEntita.Utente;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.OrderNotFoundException;
 import it.unisa.is.monkey.applicationLogic.userManager.gestioneOrdineUtente.OrdiniServiceUtente;
 import it.unisa.is.monkey.model.MySqlOrdineDao;
-import it.unisa.is.monkey.model.MySQLUtenteDAO;
+import it.unisa.is.monkey.model.MySqlUtenteDao;
 
 @WebServlet("/DisplayInfoUtente")
 public class DisplayInfoUtente extends HttpServlet {
@@ -37,7 +37,7 @@ public class DisplayInfoUtente extends HttpServlet {
         HttpSession session = request.getSession();
 
         synchronized(session) {
-            MySQLUtenteDAO udao = new MySQLUtenteDAO();
+            MySqlUtenteDao udao = new MySqlUtenteDao();
             MySqlOrdineDao odao = new MySqlOrdineDao();
             String userCode = (String) session.getAttribute("userCode");
             Utente utente = udao.getUtente(userCode);

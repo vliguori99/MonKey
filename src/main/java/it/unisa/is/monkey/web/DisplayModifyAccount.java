@@ -1,8 +1,6 @@
 package it.unisa.is.monkey.web;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,9 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Utente;
-import it.unisa.is.monkey.model.MySQLUtenteDAO;
-
-import java.io.Console;
+import it.unisa.is.monkey.model.MySqlUtenteDao;
 
 //Display modifica profilo lato utente
 
@@ -30,7 +26,7 @@ public class DisplayModifyAccount extends HttpServlet {
 
         synchronized(session) {
             String id = request.getParameter("id");
-            MySQLUtenteDAO utentedao = new MySQLUtenteDAO();
+            MySqlUtenteDao utentedao = new MySqlUtenteDao();
             Utente utente_x = utentedao.getUtente(id);
             request.setAttribute("utenteX", utente_x);
             request.getRequestDispatcher("modificaProfilo.jsp").forward(request, response);

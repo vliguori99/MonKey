@@ -1,7 +1,7 @@
 package it.unisa.is.monkey.web;
 
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Prodotto;
-import it.unisa.is.monkey.model.MySQLProdottoDAO;
+import it.unisa.is.monkey.model.MySqlProdottoDao;
 
 import java.io.IOException;
 import java.util.List;
@@ -37,7 +37,7 @@ public class DisplaySearch extends HttpServlet {
 
         synchronized(session) {
             String search = request.getParameter("s");
-            MySQLProdottoDAO pdao = new MySQLProdottoDAO();
+            MySqlProdottoDao pdao = new MySqlProdottoDao();
             List<Prodotto> searchList = pdao.getSearchProducts(search);
             request.setAttribute("searchList", searchList);
             RequestDispatcher rs = request.getRequestDispatcher("ricerca.jsp");

@@ -3,7 +3,7 @@ package it.unisa.is.monkey.applicationLogic.userManager.gestioneAccountUtente;
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Utente;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreUtente.UserNotDeletedException;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreUtente.UserNotModifiedException;
-import it.unisa.is.monkey.model.MySQLUtenteDAO;
+import it.unisa.is.monkey.model.MySqlUtenteDao;
 
 /**
  * La classe fornisce i metodi per la logica di business della gestione dell'utente.
@@ -12,7 +12,7 @@ import it.unisa.is.monkey.model.MySQLUtenteDAO;
  */
 public class AccountServiceUtente implements AccountServiceUtenteInterface {
 
-  private MySQLUtenteDAO utenteDao = new MySQLUtenteDAO();
+  private MySqlUtenteDao utenteDao = new MySqlUtenteDao();
 
   /**
    * Permette la modifica di un utente.

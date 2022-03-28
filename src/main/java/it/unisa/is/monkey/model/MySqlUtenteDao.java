@@ -4,17 +4,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import it.unisa.is.monkey.*;
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Utente;
-import utils.MySQLDAO;
+import utils.MySqlDao;
 
 
-public class MySQLUtenteDAO {
+public class MySqlUtenteDao {
 
     /** Creare un utente */
     private static final String CREATE_QUERY = "INSERT INTO utente (id, nome, cognome, username, email, psw, indirizzo, numero_carta, amministratore) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -44,7 +42,7 @@ public class MySQLUtenteDAO {
         ResultSet result = null;
 
         try {
-            con = MySQLDAO.createConnection();
+            con = MySqlDao.createConnection();
             statement = con.prepareStatement(READ_ALL_QUERY);
             statement.execute();
             result = statement.getResultSet();
@@ -86,7 +84,7 @@ public class MySQLUtenteDAO {
         ResultSet result = null;
 
         try {
-            con = MySQLDAO.createConnection();
+            con = MySqlDao.createConnection();
             statement = con.prepareStatement(READ_QUERY);
             statement.setString(1, id);
             statement.execute();
@@ -144,7 +142,7 @@ public class MySQLUtenteDAO {
         boolean uguali = false;
         try
         {
-            con = MySQLDAO.createConnection();
+            con = MySqlDao.createConnection();
             statement = con.prepareStatement(READ_ALL_QUERY);
             statement.execute();
             result = statement.getResultSet();
@@ -193,7 +191,7 @@ public class MySQLUtenteDAO {
         ArrayList<String> emailDB = new ArrayList<String>();
         try
         {
-            con = MySQLDAO.createConnection();
+            con = MySqlDao.createConnection();
             statement = con.prepareStatement(READ_ALL_QUERY);
             statement.execute();
             result = statement.getResultSet();
@@ -241,7 +239,7 @@ public class MySQLUtenteDAO {
         Connection con = null;
         PreparedStatement statement = null;
         try {
-            con = MySQLDAO.createConnection();
+            con = MySqlDao.createConnection();
             statement = con.prepareStatement(CREATE_QUERY);
             statement.setString(1, utente.getId());
             statement.setString(2, utente.getNome());
@@ -275,7 +273,7 @@ public class MySQLUtenteDAO {
         Connection con = null;
         PreparedStatement statement = null;
         try {
-            con = MySQLDAO.createConnection();
+            con = MySqlDao.createConnection();
             statement = con.prepareStatement(UPDATE_QUERY);
             statement.setString(1, utente.getNome());
             statement.setString(2, utente.getCognome());
@@ -310,7 +308,7 @@ public class MySQLUtenteDAO {
         Connection con = null;
         PreparedStatement statement = null;
         try {
-            con = MySQLDAO.createConnection();
+            con = MySqlDao.createConnection();
             statement = con.prepareStatement(DELETE_QUERY);
             statement.setString(1, id);
             statement.execute();

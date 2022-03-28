@@ -3,7 +3,7 @@ package it.unisa.is.monkey.web;
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Ordine;
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Prodotto;
 import it.unisa.is.monkey.model.MySqlOrdineDao;
-import it.unisa.is.monkey.model.MySQLProdottoDAO;
+import it.unisa.is.monkey.model.MySqlProdottoDao;
 
 import java.io.IOException;
 import java.util.*;
@@ -36,7 +36,7 @@ public class OrderDetails extends HttpServlet {
         HttpSession session = request.getSession();
 
         synchronized(session) {
-            MySQLProdottoDAO pdao = new MySQLProdottoDAO();
+            MySqlProdottoDao pdao = new MySqlProdottoDao();
             MySqlOrdineDao odao = new MySqlOrdineDao();
             String codice = request.getParameter("codice");
             Ordine ordine = odao.getOrder(codice);

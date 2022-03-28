@@ -5,16 +5,16 @@ import it.unisa.is.monkey.applicationLogic.monkeyEntita.Prodotto;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.PurchaseFailedException;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.QuantityException;
 import it.unisa.is.monkey.model.MySqlOrdineDao;
-import it.unisa.is.monkey.model.MySQLProdottoDAO;
-import it.unisa.is.monkey.model.MySQLUtenteDAO;
+import it.unisa.is.monkey.model.MySqlProdottoDao;
+import it.unisa.is.monkey.model.MySqlUtenteDao;
 
 import java.util.ArrayList;
 
 public class ProdottiServiceUtente implements ProdottiServiceUtenteInterface {
 
-    private MySQLProdottoDAO prodottoDAO = new MySQLProdottoDAO();
+    private MySqlProdottoDao prodottoDAO = new MySqlProdottoDao();
     private MySqlOrdineDao ordineDAO = new MySqlOrdineDao();
-    private MySQLUtenteDAO utenteDAO = new MySQLUtenteDAO();
+    private MySqlUtenteDao utenteDAO = new MySqlUtenteDao();
 
     @Override
     public void acquistaProdotto(String userCode, Ordine ordine, ArrayList<Integer> quantita)

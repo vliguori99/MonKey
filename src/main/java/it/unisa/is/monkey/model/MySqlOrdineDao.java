@@ -1,7 +1,7 @@
 package it.unisa.is.monkey.model;
 
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Ordine;
-import utils.MySQLDAO;
+import utils.MySqlDao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -44,7 +44,7 @@ public class MySqlOrdineDao {
         String codice = "";
         boolean uguali = false;
         try {
-            con = MySQLDAO.createConnection();
+            con = MySqlDao.createConnection();
             statement = con.prepareStatement(SELECT_ALL_ORDERS);
             statement.execute();
             result = statement.getResultSet();
@@ -87,7 +87,7 @@ public class MySqlOrdineDao {
         float totale_fattura;
 
         try {
-            con = MySQLDAO.createConnection();
+            con = MySqlDao.createConnection();
             statement = con.prepareStatement(CREATE_ORDER);
 
             statement.setString(1, ordine.getCodice());
@@ -128,7 +128,7 @@ public class MySqlOrdineDao {
         float totale_fattura;
 
         try {
-            con = MySQLDAO.createConnection();
+            con = MySqlDao.createConnection();
             statement = con.prepareStatement(ADD_COMPOSITION);
 
 
@@ -202,7 +202,7 @@ public class MySqlOrdineDao {
         Ordine ordine = null;
 
         try {
-            con = MySQLDAO.createConnection();
+            con = MySqlDao.createConnection();
             statement = con.prepareStatement(SELECT_ORDER);
             statement.setString(1, codice);
 
@@ -232,7 +232,7 @@ public class MySqlOrdineDao {
         List<Integer> quantities = new ArrayList<Integer>();
 
         try {
-            con = MySQLDAO.createConnection();
+            con = MySqlDao.createConnection();
             statement = con.prepareStatement(SELECT_COMPOSITIONS);
             statement.setString(1, ordine);
 
@@ -261,7 +261,7 @@ public class MySqlOrdineDao {
         List<Float> prices = new ArrayList<Float>();
 
         try {
-            con = MySQLDAO.createConnection();
+            con = MySqlDao.createConnection();
             statement = con.prepareStatement(SELECT_COMPOSITIONS);
             statement.setString(1, ordine);
 
@@ -289,7 +289,7 @@ public class MySqlOrdineDao {
         List<String> products = new ArrayList<String>();
 
         try {
-            con = MySQLDAO.createConnection();
+            con = MySqlDao.createConnection();
             statement = con.prepareStatement(SELECT_COMPOSITIONS);
             statement.setString(1, ordine);
 
@@ -315,7 +315,7 @@ public class MySqlOrdineDao {
         List<Ordine> ordini = new ArrayList<Ordine>();
 
         try {
-            con = MySQLDAO.createConnection();
+            con = MySqlDao.createConnection();
             statement = con.prepareStatement(SELECT_ORDER_USER);
             statement.setString(1, utente);
 
@@ -357,7 +357,7 @@ public class MySqlOrdineDao {
 
 
         try {
-            con = MySQLDAO.createConnection();
+            con = MySqlDao.createConnection();
             statement = con.prepareStatement(SELECT_ORDER_USER);
             statement.setString(1, utente);
             statement.execute();
@@ -392,7 +392,7 @@ public class MySqlOrdineDao {
         List<Ordine> ordini = new ArrayList<Ordine>();
 
         try {
-            con = MySQLDAO.createConnection();
+            con = MySqlDao.createConnection();
             statement = con.prepareStatement(SELECT_ALL_ORDERS);
             statement.execute();
             result = statement.getResultSet();
@@ -431,7 +431,7 @@ public class MySqlOrdineDao {
 
 
         try {
-            con = MySQLDAO.createConnection();
+            con = MySqlDao.createConnection();
             statement = con.prepareStatement(SELECT_ALL_ORDERS);
             statement.execute();
 

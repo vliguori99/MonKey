@@ -4,13 +4,13 @@ import it.unisa.is.monkey.applicationLogic.monkeyEntita.Ordine;
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Utente;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.OrderNotFoundException;
 import it.unisa.is.monkey.model.MySqlOrdineDao;
-import it.unisa.is.monkey.model.MySQLUtenteDAO;
+import it.unisa.is.monkey.model.MySqlUtenteDao;
 
 import java.util.List;
 
 public class OrdiniServiceUtente implements OrdiniServiceUtenteInterface{
 
-    MySQLUtenteDAO utenteDAO = new MySQLUtenteDAO();
+    MySqlUtenteDao utenteDAO = new MySqlUtenteDao();
     MySqlOrdineDao ordineDAO = new MySqlOrdineDao();
 
     @Override

@@ -1,11 +1,9 @@
 package it.unisa.is.monkey.web;
 
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Prodotto;
-import it.unisa.is.monkey.model.MySQLProdottoDAO;
+import it.unisa.is.monkey.model.MySqlProdottoDao;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -36,7 +34,7 @@ public class DisplayInfo extends HttpServlet {
         HttpSession session = request.getSession();
 
         synchronized (session) {
-            MySQLProdottoDAO pdao = new MySQLProdottoDAO();
+            MySqlProdottoDao pdao = new MySqlProdottoDao();
             String id = request.getParameter("id");
             Prodotto prod = pdao.getProduct(id);
             request.setAttribute("prodotto", prod);

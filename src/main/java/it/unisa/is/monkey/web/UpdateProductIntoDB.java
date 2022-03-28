@@ -1,8 +1,6 @@
 package it.unisa.is.monkey.web;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,9 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import it.unisa.is.monkey.model.MySQLProdottoDAO;
-
-import java.io.Console;
+import it.unisa.is.monkey.model.MySqlProdottoDao;
 
 @WebServlet("/UpdateProductIntoDB")
 public class UpdateProductIntoDB extends HttpServlet {
@@ -36,7 +32,7 @@ public class UpdateProductIntoDB extends HttpServlet {
 
         synchronized(session) {
             String codice = request.getParameter("codice");
-            MySQLProdottoDAO pdao = new MySQLProdottoDAO();
+            MySqlProdottoDao pdao = new MySqlProdottoDao();
             String titolo = request.getParameter("titolo");
             float prezzo_listino = Float.parseFloat(request.getParameter("prezzo_listino"));
             float sconto = Float.parseFloat(request.getParameter("sconto"));

@@ -1,13 +1,9 @@
 package it.unisa.is.monkey.web;
 
-import it.unisa.is.monkey.applicationLogic.monkeyEntita.Prodotto;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.QuantityException;
 import it.unisa.is.monkey.applicationLogic.userManager.gestioneProdottiUtente.ProdottiServiceUtente;
-import it.unisa.is.monkey.model.MySQLProdottoDAO;
-import java.io.Console;
+
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
