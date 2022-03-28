@@ -7,14 +7,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
 import java.util.*;
 import java.text.*;
 
 
-public class MySQLOrdineDAO {
+public class MySqlOrdineDao {
     //Creazione di un ordine
     private static String CREATE_ORDER = "INSERT INTO ordine (codice, data_ordine, importo, iva, " +
             "totale_fattura, utente) values (?, ?, ?, ?, ?, ?)";

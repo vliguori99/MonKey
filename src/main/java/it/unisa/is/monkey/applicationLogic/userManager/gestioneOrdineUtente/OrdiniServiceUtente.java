@@ -3,7 +3,7 @@ package it.unisa.is.monkey.applicationLogic.userManager.gestioneOrdineUtente;
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Ordine;
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Utente;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.OrderNotFoundException;
-import it.unisa.is.monkey.model.MySQLOrdineDAO;
+import it.unisa.is.monkey.model.MySqlOrdineDao;
 import it.unisa.is.monkey.model.MySQLUtenteDAO;
 
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.List;
 public class OrdiniServiceUtente implements OrdiniServiceUtenteInterface{
 
     MySQLUtenteDAO utenteDAO = new MySQLUtenteDAO();
-    MySQLOrdineDAO ordineDAO = new MySQLOrdineDAO();
+    MySqlOrdineDao ordineDAO = new MySqlOrdineDao();
 
     @Override
     public List<Ordine> visualizzaOrdini(String data1, String data2, String userCode)

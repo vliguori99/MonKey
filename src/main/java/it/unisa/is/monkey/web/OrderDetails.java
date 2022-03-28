@@ -2,11 +2,10 @@ package it.unisa.is.monkey.web;
 
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Ordine;
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Prodotto;
-import it.unisa.is.monkey.model.MySQLOrdineDAO;
+import it.unisa.is.monkey.model.MySqlOrdineDao;
 import it.unisa.is.monkey.model.MySQLProdottoDAO;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.*;
 
 import javax.servlet.RequestDispatcher;
@@ -38,7 +37,7 @@ public class OrderDetails extends HttpServlet {
 
         synchronized(session) {
             MySQLProdottoDAO pdao = new MySQLProdottoDAO();
-            MySQLOrdineDAO odao = new MySQLOrdineDAO();
+            MySqlOrdineDao odao = new MySqlOrdineDao();
             String codice = request.getParameter("codice");
             Ordine ordine = odao.getOrder(codice);
             List<Integer> quantita = odao.orderQuantities(codice);

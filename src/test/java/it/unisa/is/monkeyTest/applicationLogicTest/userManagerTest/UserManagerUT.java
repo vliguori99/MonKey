@@ -13,7 +13,7 @@ import it.unisa.is.monkey.applicationLogic.userManager.gestioneAutenticazione.Au
 import it.unisa.is.monkey.applicationLogic.userManager.gestioneOrdineUtente.OrdiniServiceUtente;
 import it.unisa.is.monkey.applicationLogic.userManager.gestioneProdottiUtente.ProdottiServiceUtente;
 import it.unisa.is.monkey.applicationLogic.userManager.gestioneRegistrazione.RegistrazioneService;
-import it.unisa.is.monkey.model.MySQLOrdineDAO;
+import it.unisa.is.monkey.model.MySqlOrdineDao;
 import it.unisa.is.monkey.model.MySQLProdottoDAO;
 import it.unisa.is.monkey.model.MySQLUtenteDAO;
 import org.junit.Test;
@@ -26,7 +26,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -37,7 +36,7 @@ public class UserManagerUT {
     @Mock
     private MySQLProdottoDAO prodottoDAO;
     @Mock
-    private MySQLOrdineDAO ordineDao;
+    private MySqlOrdineDao ordineDao;
 
     @Autowired
     @InjectMocks

@@ -2,7 +2,7 @@ package it.unisa.is.monkey.applicationLogic.adminManager.gestioneOrdineAdmin;
 
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Ordine;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreUtente.UtenteNotLoggedException;
-import it.unisa.is.monkey.model.MySQLOrdineDAO;
+import it.unisa.is.monkey.model.MySqlOrdineDao;
 
 
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ import java.util.List;
 
 public class OrdiniServiceAdmin implements OrdiniServiceAdminInterface{
 
-    MySQLOrdineDAO ordineDAO = new MySQLOrdineDAO();
+    MySqlOrdineDao ordineDAO = new MySqlOrdineDao();
 
     @Override
     public List<Ordine> visualizzaOrdini(String data1, String data2, String userCode) throws UtenteNotLoggedException {

@@ -2,22 +2,18 @@ package it.unisa.is.monkey.applicationLogic.userManager.gestioneProdottiUtente;
 
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Ordine;
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Prodotto;
-import it.unisa.is.monkey.applicationLogic.monkeyEntita.Utente;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.PurchaseFailedException;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.QuantityException;
-import it.unisa.is.monkey.model.MySQLOrdineDAO;
+import it.unisa.is.monkey.model.MySqlOrdineDao;
 import it.unisa.is.monkey.model.MySQLProdottoDAO;
 import it.unisa.is.monkey.model.MySQLUtenteDAO;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 public class ProdottiServiceUtente implements ProdottiServiceUtenteInterface {
 
     private MySQLProdottoDAO prodottoDAO = new MySQLProdottoDAO();
-    private MySQLOrdineDAO ordineDAO = new MySQLOrdineDAO();
+    private MySqlOrdineDao ordineDAO = new MySqlOrdineDao();
     private MySQLUtenteDAO utenteDAO = new MySQLUtenteDAO();
 
     @Override

@@ -9,7 +9,7 @@ import it.unisa.is.monkey.applicationLogic.monkeyEntita.Utente;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.ProductNotCreatedException;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.ProductNotRemovedException;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreUtente.UtenteNotLoggedException;
-import it.unisa.is.monkey.model.MySQLOrdineDAO;
+import it.unisa.is.monkey.model.MySqlOrdineDao;
 import it.unisa.is.monkey.model.MySQLProdottoDAO;
 import it.unisa.is.monkey.model.MySQLUtenteDAO;
 import org.junit.Test;
@@ -30,7 +30,7 @@ public class AdminManagerUT {
     @Mock
     private MySQLProdottoDAO prodottoDao;
     @Mock
-    private MySQLOrdineDAO ordineDao;
+    private MySqlOrdineDao ordineDao;
 
     @Autowired
     @InjectMocks

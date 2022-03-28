@@ -3,10 +3,10 @@ package it.unisa.is.monkey.web;
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Ordine;
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Prodotto;
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Utente;
-import it.unisa.is.monkey.model.MySQLOrdineDAO;
+import it.unisa.is.monkey.model.MySqlOrdineDao;
 import it.unisa.is.monkey.model.MySQLProdottoDAO;
 import it.unisa.is.monkey.model.MySQLUtenteDAO;
-import java.io.Console;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +44,7 @@ public class CreateInvoice extends HttpServlet {
     HttpSession session = request.getSession();
     synchronized (session) {
       String codOrdine = request.getParameter("codice");
-      MySQLOrdineDAO odao = new MySQLOrdineDAO();
+      MySqlOrdineDao odao = new MySqlOrdineDao();
       MySQLUtenteDAO udao = new MySQLUtenteDAO();
       MySQLProdottoDAO pdao = new MySQLProdottoDAO();
       Ordine ordine = odao.getOrder(codOrdine);
