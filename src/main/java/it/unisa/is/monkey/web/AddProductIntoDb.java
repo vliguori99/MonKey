@@ -20,51 +20,56 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet("/AddProductIntoDB")
 public class AddProductIntoDb extends HttpServlet {
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+  /**
+   * Questa classe aggiunge un prodotto al database
+   *
+   */
 
-    public AddProductIntoDb() {
-        super();
+  public AddProductIntoDb() {
+    super();
+  }
+
+  /**
+   *
+   * @param request Richiede
+   * @param response Risponde
+   * @throws ServletException Eccezione servlet
+   * @throws IOException IO ecception
+   */
+
+  protected void doGet(HttpServletRequest request, HttpServletResponse response)
+          throws ServletException, IOException {
+    HttpSession session = request.getSession();
+    synchronized (session) {
+      float prezzoListino = Float.parseFloat(request.getParameter("prezzo_listino"));
+      float sconto = Integer.parseInt(request.getParameter("sconto"));
+      String piattaforma = request.getParameter("piattaforma");
+      if (piattaforma.equals("")) {
+        piattaforma = null;
+      }
+      String titolo = request.getParameter("titolo");
+      String tipologia = request.getParameter("tipologia");
+      String descrizione = request.getParameter("descrizione");
+      int quantita = Integer.parseInt(request.getParameter("quantita"));
+
+      ProdottiServiceAdmin prodottiAdmin = new ProdottiServiceAdmin();
+      try {
+        prodottiAdmin.creazioneProdotto(prezzoListino, sconto, piattaforma,
+        titolo, tipologia, descrizione, quantita);
+      } catch (ProductNotCreatedException e) {
+          e.printStackTrace();
+      }
+      request.getRequestDispatcher("DisplayAdminProducts").forward(request, response);
     }
-
-    /**
-     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-     */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        synchronized (session) {
-            float prezzo_listino = Float.parseFloat(request.getParameter("prezzo_listino"));
-            float sconto = Integer.parseInt(request.getParameter("sconto"));
-            String piattaforma = request.getParameter("piattaforma");
-            if (piattaforma.equals("")) {
-                piattaforma = null;
-            }
-            String titolo = request.getParameter("titolo");
-            String tipologia = request.getParameter("tipologia");
-            String descrizione = request.getParameter("descrizione");
-            int quantita = Integer.parseInt(request.getParameter("quantita"));
-
-            ProdottiServiceAdmin prodottiAdmin = new ProdottiServiceAdmin();
-            try {
-                prodottiAdmin.creazioneProdotto(prezzo_listino, sconto, piattaforma,
-                        titolo, tipologia, descrizione, quantita);
-            } catch (ProductNotCreatedException e) {
-                e.printStackTrace();
-            }
-            request.getRequestDispatcher("DisplayAdminProducts").forward(request, response);
-        }
-    }
+  }
 
 
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // TODO Auto-generated method stub
-        doGet(request, response);
-    }
-
+  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    doGet(request, response);
+  }
 }

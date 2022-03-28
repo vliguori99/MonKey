@@ -12,8 +12,9 @@ import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreUtente.UserNotModi
 
 public interface AccountServiceUtenteInterface {
 
-  void modificaUtente(String id, String nome, String cognome, String username, String email, String psw,
-                        String indirizzo, String numCarta) throws UserNotModifiedException;
+  void modificaUtente(String id, String nome, String cognome, String username, String email,
+                      String psw, String indirizzo, String numCarta)
+                      throws UserNotModifiedException;
 
   void eliminaAccount(Utente utente) throws UserNotDeletedException;
 
