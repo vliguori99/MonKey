@@ -41,7 +41,7 @@ String id, nome, cognome, username, psw, email, indirizzo, numero_carta, codOrdi
     psw = u.getPsw();
     email = u.getEmail();
     indirizzo = u.getIndirizzo();
-    numero_carta = u.getNumero_carta();
+    numero_carta = u.getNumeroCarta();
     amministratore = u.getAmministratore();
     List<Ordine> ordini = (List<Ordine>)request.getAttribute("ordini");
 %>

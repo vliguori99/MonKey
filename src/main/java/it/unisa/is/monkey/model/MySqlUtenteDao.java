@@ -248,7 +248,7 @@ public class MySqlUtenteDao {
             statement.setString(5, utente.getEmail());
             statement.setString(6, utente.getPsw());
             statement.setString(7, utente.getIndirizzo());
-            statement.setString(8, utente.getNumero_carta());
+            statement.setString(8, utente.getNumeroCarta());
             statement.setBoolean(9, utente.getAmministratore());
             statement.execute();
         } catch (SQLException e) {
@@ -281,7 +281,7 @@ public class MySqlUtenteDao {
             statement.setString(4, utente.getEmail());
             statement.setString(5, utente.getPsw());
             statement.setString(6, utente.getIndirizzo());
-            statement.setString(7, utente.getNumero_carta());
+            statement.setString(7, utente.getNumeroCarta());
             statement.setBoolean(8, utente.getAmministratore());
             statement.setString(9, utente.getId());
             statement.execute();
