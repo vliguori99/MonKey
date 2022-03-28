@@ -11,24 +11,24 @@ import java.util.List;
  * classe servizi ordini (admin).
  */
 public class OrdiniServiceUtente implements OrdiniServiceUtenteInterface {
-  MySqlUtenteDao utenteDAO = new MySqlUtenteDao();
-  MySqlOrdineDao ordineDAO = new MySqlOrdineDao();
+  MySqlUtenteDao utenteDao = new MySqlUtenteDao();
+  MySqlOrdineDao ordineDao = new MySqlOrdineDao();
 
   @Override
   public List<Ordine> visualizzaOrdini(String data1, String data2, String userCode)
           throws OrderNotFoundException {
-    Utente utente = utenteDAO.getUtente(userCode);
+    Utente utente = utenteDao.getUtente(userCode);
     List<Ordine> ordini = null;
     if (data1 == null || data1.equals("") && data2 == null || data2.equals("")) {
       if (userCode == "") {
         throw new OrderNotFoundException();
       }
-      ordini = ordineDAO.userOrders(userCode);
+      ordini = ordineDao.userOrders(userCode);
     } else {
       if (userCode == "") {
         throw new OrderNotFoundException();
       }
-        ordini = ordineDAO.userOrdersDateFilter(userCode, data1, data2);
+      ordini = ordineDao.userOrdersDateFilter(userCode, data1, data2);
     }
     return ordini;
   }

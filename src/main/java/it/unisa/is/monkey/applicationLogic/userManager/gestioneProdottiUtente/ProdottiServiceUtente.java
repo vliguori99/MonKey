@@ -8,101 +8,93 @@ import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.QuantityE
 import it.unisa.is.monkey.model.MySqlOrdineDao;
 import it.unisa.is.monkey.model.MySqlProdottoDao;
 import it.unisa.is.monkey.model.MySqlUtenteDao;
-import it.unisa.is.monkey.web.AddToCart;
-
 import java.util.ArrayList;
 
+/**
+ * Classe prodotti servizi (utente).
+ */
 public class ProdottiServiceUtente implements ProdottiServiceUtenteInterface {
 
-    private MySqlProdottoDao prodottoDAO = new MySqlProdottoDao();
-    private MySqlOrdineDao ordineDAO = new MySqlOrdineDao();
-    private MySqlUtenteDao utenteDAO = new MySqlUtenteDao();
+  private MySqlProdottoDao prodottoDao = new MySqlProdottoDao();
+  private MySqlOrdineDao ordineDao = new MySqlOrdineDao();
+  private MySqlUtenteDao utenteDao = new MySqlUtenteDao();
 
-    @Override
-    public void acquistaProdotto(String userCode, Ordine ordine, ArrayList<Integer> quantita)
-            throws PurchaseFailedException {
-        int i = 0;
+  @Override
+  public void acquistaProdotto(String userCode, Ordine ordine, ArrayList<Integer> quantita)
+          throws PurchaseFailedException {
+    int i = 0;
 
-        if (userCode == null) {
-            throw new PurchaseFailedException("Effettuare il login");
-        }
-
-        ordine.setCodice(ordineDAO.codOrderGenerator());
-        ordineDAO.createOrder(ordine);
-
-        for(String codiceProdotto : ordine.getProdotti())
-        {
-            Prodotto prodotto = prodottoDAO.getProduct(codiceProdotto);
-            prodottoDAO.updateProdotto(prodotto.getCodice(), prodotto.getPrezzo_attuale(),
-                    prodotto.getSconto_attuale(), prodotto.getPrezzo_listino(), prodotto.getPiattaforma(),
-                    prodotto.getTitolo(), prodotto.getTipologia(), prodotto.getDescrizione(),
-                    (prodotto.getQuantita() - quantita.get(i)));
-            ordineDAO.createComposition(ordine.getCodice(), codiceProdotto, prodotto.getPrezzo_attuale(),
-                    quantita.get(i) );
-            i++;
-        }
-        prodottoDAO.removeCart(userCode);
-
+    if (userCode == null) {
+      throw new PurchaseFailedException("Effettuare il login");
     }
 
+    ordine.setCodice(ordineDao.codOrderGenerator());
+    ordineDao.createOrder(ordine);
 
-    @Override
-    public void aggiungiAlCarrello(String prodotto, String utente, String ip, String userCode)
-            throws CartException {
-
-        if(userCode != null) {
-            if(!prodottoDAO.getProductIntoCart(prodotto, utente, ip)) {
-                prodottoDAO.addGameUser(prodottoDAO.codAggiuntoGenerator(), utente, prodotto, 1, null);
-            }
-            else {
-                prodottoDAO.updateGameUser(1, prodotto, utente, ip);
-            }
-        }
-        else {
-            if(!prodottoDAO.getProductIntoCart(prodotto, utente, ip)) {
-                prodottoDAO.addGameUser(prodottoDAO.codAggiuntoGenerator(), null, prodotto, 1, ip);
-            }
-            else {
-                prodottoDAO.updateGameUser(1, prodotto, utente, ip);
-            }
-        }
-
-        //if (userCode == null) {
-        //    throw new CartException("Effettua il login");
-        //}
+    for (String codiceProdotto : ordine.getProdotti()) {
+      Prodotto prodotto = prodottoDao.getProduct(codiceProdotto);
+      prodottoDao.updateProdotto(prodotto.getCodice(), prodotto.getPrezzo_attuale(),
+             prodotto.getSconto_attuale(), prodotto.getPrezzo_listino(), prodotto.getPiattaforma(),
+             prodotto.getTitolo(), prodotto.getTipologia(), prodotto.getDescrizione(),
+             (prodotto.getQuantita() - quantita.get(i)));
+      ordineDao.createComposition(ordine.getCodice(), codiceProdotto, prodotto.getPrezzo_attuale(),
+              quantita.get(i));
+      i++;
     }
+    prodottoDao.removeCart(userCode);
+  }
 
-    @Override
-    public void rimuoviDalCarrello(String prodotto, String utente, String ip) throws CartException {
-        if (utente == null) {
-            throw new CartException("Effettua il login");
-        }
-        prodottoDAO.removeProductFromCart(prodotto, utente, ip);
+
+  @Override
+  public void aggiungiAlCarrello(String prodotto, String utente, String ip, String userCode)
+          throws CartException {
+    if (userCode != null) {
+      if (!prodottoDao.getProductIntoCart(prodotto, utente, ip)) {
+        prodottoDao.addGameUser(prodottoDao.codAggiuntoGenerator(), utente, prodotto,
+                1, null);
+      } else {
+        prodottoDao.updateGameUser(1, prodotto, utente, ip);
+      }
+    } else {
+      if (!prodottoDao.getProductIntoCart(prodotto, utente, ip)) {
+        prodottoDao.addGameUser(prodottoDao.codAggiuntoGenerator(),
+                  null, prodotto, 1, ip);
+      } else {
+        prodottoDao.updateGameUser(1, prodotto, utente, ip);
+      }
     }
+  }
 
-    @Override
-    public int aggiungiUnoAlCarrello(String idProdotto, String userCode, String ip) throws QuantityException {
-        int qProdotto = -1;
-        int qCarrello = -1;
-        qProdotto = prodottoDAO.getQuantita(idProdotto);
-        qCarrello = prodottoDAO.getQuantitaIntoCart(idProdotto, userCode, ip);
-        if (qProdotto == qCarrello){
-            throw new QuantityException("Quantità prodotto terminata");
-        }
-        prodottoDAO.updateGameUser(1, idProdotto, userCode, ip);
-        return qCarrello;
+  @Override
+  public void rimuoviDalCarrello(String prodotto, String utente, String ip) throws CartException {
+    if (utente == null) {
+      throw new CartException("Effettua il login");
     }
+    prodottoDao.removeProductFromCart(prodotto, utente, ip);
+  }
 
-    @Override
-    public int rimuoviUnoDalCarrello(String idProdotto, String userCode, String ip) throws QuantityException {
-        int qCarrello = prodottoDAO.getQuantityIntoCart(idProdotto, userCode, ip);
-        if (qCarrello <= 0) {
-            throw new QuantityException("Prodotto non presente nel carrello");
-        }
-        prodottoDAO.updateGameUser(-1, idProdotto, userCode, ip);
-        return qCarrello;
+  @Override
+  public int aggiungiUnoAlCarrello(String idProdotto, String usercode, String ip)
+          throws QuantityException {
+    int qProdotto = -1;
+    int qCarrello = -1;
+    qProdotto = prodottoDao.getQuantita(idProdotto);
+    qCarrello = prodottoDao.getQuantitaIntoCart(idProdotto, usercode, ip);
+    if (qProdotto == qCarrello) {
+      throw new QuantityException("Quantità prodotto terminata");
     }
+    prodottoDao.updateGameUser(1, idProdotto, usercode, ip);
+    return qCarrello;
+  }
 
-
-
+  @Override
+  public int rimuoviUnoDalCarrello(String idProdotto, String usercode, String ip)
+          throws QuantityException {
+    int qCarrello = prodottoDao.getQuantityIntoCart(idProdotto, usercode, ip);
+    if (qCarrello <= 0) {
+      throw new QuantityException("Prodotto non presente nel carrello");
+    }
+    prodottoDao.updateGameUser(-1, idProdotto, usercode, ip);
+    return qCarrello;
+  }
 }
