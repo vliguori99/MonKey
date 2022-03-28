@@ -21,9 +21,8 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/AddProductIntoDB")
 public class AddProductIntoDb extends HttpServlet {
   private static final long serialVersionUID = 1L;
-
   /**
-   * Questa classe aggiunge un prodotto al database
+   * Questa classe aggiunge un prodotto al database.
    *
    */
 
