@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Ordine;
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Utente;
+import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.OrderNotFoundException;
 import it.unisa.is.monkey.applicationLogic.userManager.gestioneOrdineUtente.OrdiniServiceUtente;
 import it.unisa.is.monkey.model.MySQLOrdineDAO;
 import it.unisa.is.monkey.model.MySQLUtenteDAO;
@@ -46,7 +47,12 @@ public class DisplayInfoUtente extends HttpServlet {
             request.setAttribute("utente", utente);
 
             OrdiniServiceUtente ordiniService = new OrdiniServiceUtente();
-            List<Ordine> ordini = ordiniService.visualizzaOrdini(data1, data2, userCode);
+            List<Ordine> ordini = null;
+            try {
+                ordini = ordiniService.visualizzaOrdini(data1, data2, userCode);
+            } catch (OrderNotFoundException e) {
+                e.printStackTrace();
+            }
 
             request.setAttribute("ordini", ordini);
             RequestDispatcher rs = request.getRequestDispatcher("profilo.jsp");

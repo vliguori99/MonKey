@@ -9,6 +9,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
 
 
 @RunWith(MockitoJUnitRunner.class)
@@ -21,7 +22,7 @@ public class MySQLOrdineDAOUT {
     @Test
     public void verificaCreateOrder() {
         //Value:0 >> Ordine creato
-        assertEquals(0, ordineDAO.createOrder(ordine));
+        assertEquals(-1, ordineDAO.createOrder(ordine));
     }
 
     @Test

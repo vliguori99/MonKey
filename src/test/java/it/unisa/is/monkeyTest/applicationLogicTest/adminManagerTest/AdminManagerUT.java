@@ -7,6 +7,7 @@ import it.unisa.is.monkey.applicationLogic.adminManager.gestioneUtentiAdmin.Uten
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Ordine;
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Utente;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.ProductNotCreatedException;
+import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.ProductNotRemovedException;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreUtente.UtenteNotLoggedException;
 import it.unisa.is.monkey.model.MySQLOrdineDAO;
 import it.unisa.is.monkey.model.MySQLProdottoDAO;
@@ -25,11 +26,11 @@ import static org.mockito.Mockito.when;
 public class AdminManagerUT {
 
     @Mock
-    private MySQLUtenteDAO utenteDAO;
+    private MySQLUtenteDAO utenteDao;
     @Mock
-    private MySQLProdottoDAO prodottoDAO;
+    private MySQLProdottoDAO prodottoDao;
     @Mock
-    private MySQLOrdineDAO ordineDAO;
+    private MySQLOrdineDAO ordineDao;
 
     @Autowired
     @InjectMocks
@@ -62,7 +63,7 @@ public class AdminManagerUT {
     @Test
     public void controllaCreazioneProdotto() {
         String messaggio = "Prodotto non valido";
-        when(prodottoDAO.codProdottoGenerator()).thenReturn(null);
+        when(prodottoDao.codProdottoGenerator()).thenReturn(null);
         try {
             prodottiServiceAdmin.creazioneProdotto(50.0f, 5.0f, "Playstation 4",
                     "Fifa 22", "Videogioco", "Gioco di calcio", 5);
@@ -71,6 +72,14 @@ public class AdminManagerUT {
         }
     }
 
-
+    @Test
+    public void controllaRimozioneProdotto() {
+        String messaggio = "Prodotto non valido";
+        try {
+            prodottiServiceAdmin.rimozioneProdotto("");
+        } catch (ProductNotRemovedException e) {
+            assertEquals(messaggio, e.getMessage());
+        }
+    }
 
 }
