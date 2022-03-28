@@ -3,11 +3,10 @@ package it.unisa.is.monkey.web;
 import it.unisa.is.monkey.applicationLogic.adminManager.gestioneUtentiAdmin.UtentiServiceAdmin;
 import it.unisa.is.monkey.applicationLogic.adminManager.gestioneUtentiAdmin.UtentiServiceAdminInterface;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreUtente.UserNotDeletedException;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.io.Console;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 
-import java.io.Console;
+
 
 @WebServlet("/DeleteUserFromDB")
 public class DeleteUserFromDB extends HttpServlet {
