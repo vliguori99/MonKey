@@ -1,13 +1,9 @@
 package it.unisa.is.monkey.web;
 
 import it.unisa.is.monkey.applicationLogic.adminManager.gestioneProdottiAdmin.ProdottiServiceAdmin;
-import it.unisa.is.monkey.applicationLogic.monkeyEntita.Prodotto;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.ProductNotCreatedException;
-import it.unisa.is.monkey.model.MySQLProdottoDAO;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,34 +12,36 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
-import java.io.Console;
+/**
+ * La classe fornisce i metodi per la servlet della gestione del carrello.
+ *
+ * @author Emanuele zini
+ */
 
 @WebServlet("/AddProductIntoDB")
-public class AddProductIntoDB extends HttpServlet {
+public class AddProductIntoDb extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddProductIntoDB() {
+
+    public AddProductIntoDb() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // TODO Auto-generated method stub
         HttpSession session = request.getSession();
-
-        synchronized(session) {
+        synchronized (session) {
             float prezzo_listino = Float.parseFloat(request.getParameter("prezzo_listino"));
             float sconto = Integer.parseInt(request.getParameter("sconto"));
             String piattaforma = request.getParameter("piattaforma");
-            if (piattaforma.equals(""))
-                    piattaforma = null;
+            if (piattaforma.equals("")) {
+                piattaforma = null;
+            }
             String titolo = request.getParameter("titolo");
             String tipologia = request.getParameter("tipologia");
             String descrizione = request.getParameter("descrizione");
@@ -56,7 +54,6 @@ public class AddProductIntoDB extends HttpServlet {
             } catch (ProductNotCreatedException e) {
                 e.printStackTrace();
             }
-
             request.getRequestDispatcher("DisplayAdminProducts").forward(request, response);
         }
     }
