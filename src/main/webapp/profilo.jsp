@@ -94,7 +94,7 @@ String id, nome, cognome, username, psw, email, indirizzo, numero_carta, codOrdi
                 {
                     codOrdine = o.getCodice();
                     data = o.getData_ordine();
-                    importo = o.getTotale_fattura();
+                    importo = o.getTotaleFattura();
             %>
             <tr>
                 <td><%=codOrdine%></td>

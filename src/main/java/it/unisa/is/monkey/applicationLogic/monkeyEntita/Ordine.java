@@ -1,114 +1,99 @@
 package it.unisa.is.monkey.applicationLogic.monkeyEntita;
+
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.ArrayList;
 
-public class Ordine
-{
-    /**
-     *
-     * @param i_codice
-     * @param i_data_ordine
-     * @param i_importo
-     * @param i_iva
-     * @param i_utente
-     *
-     */
-    public Ordine(String i_codice, String i_data_ordine, float i_importo, int i_iva, String i_utente)
-    {
-        codice = i_codice;
-        data_ordine = i_data_ordine;
-        importo = i_importo;
-        iva = i_iva;
-        totale_fattura = importo + ((importo / 100) * iva);
-        totale_fattura = new BigDecimal(totale_fattura).setScale(2, BigDecimal.ROUND_UP).floatValue();
-        utente = i_utente;
-        prodotti = new ArrayList<String>();
-    }
+/**
+ * Classe che identifica l'ordine.
+ */
+public class Ordine {
 
-    public Ordine() {}
+  /**
+  * Classe che identifica l'ordine.
+  *
+  * @param ocodice identifica il codice dell'ordine
+  * @param odata identifica la data dell'ordine
+  * @param oimporto identifica l'importo dell'ordine
+  * @param oiva identifica l'iva
+  * @param outente identifica l'utente
+  */
+  public Ordine(String ocodice, String odata, float oimporto, int oiva, String outente) {
+    codice = ocodice;
+    dataOrdine = odata;
+    importo = oimporto;
+    iva = oiva;
+    totaleFattura = importo + ((importo / 100) * iva);
+    totaleFattura = new BigDecimal(totaleFattura).setScale
+            (2, BigDecimal.ROUND_UP).floatValue();
+    utente = outente;
+    prodotti = new ArrayList<String>();
+  }
 
-    /**
-     *
-     * @return
-     */
-    public String getCodice()
-    {
-        return codice;
-    }
+  public Ordine() {}
 
-    public String getData_ordine()
-    {
-        return data_ordine;
-    }
+  public String getCodice() {
+    return codice;
+  }
 
-    public float getImporto()
-    {
-        return importo;
-    }
+  public String getData_ordine() {
+    return dataOrdine;
+  }
 
-    public int getIva()
-    {
-        return iva;
-    }
+  public float getImporto() {
+    return importo;
+  }
 
-    public float getTotale_fattura()
-    {
-        return totale_fattura;
-    }
+  public int getIva() {
+    return iva;
+  }
 
-    public String getUtente()
-    {
-        return utente;
-    }
+  public float getTotaleFattura() {
+    return totaleFattura;
+  }
 
-    public ArrayList<String> getProdotti()
-    {
-        return prodotti;
-    }
+  public String getUtente() {
+    return utente;
+  }
 
-    /**
-     *
-     * @param i_codice
-     */
-    public void setCodice(String i_codice)
-    {
-        codice = i_codice;
-    }
+  public ArrayList<String> getProdotti() {
+    return prodotti;
+  }
 
-    public void setData_ordine(String i_data_ordine)
-    {
-        data_ordine = i_data_ordine;
-    }
+  public void setCodice(String icodice) {
+    codice = icodice;
+  }
 
-    public void setImporto(float i_importo)
-    {
-        importo = i_importo;
-        totale_fattura = importo + ((importo / 100) * iva);
-        totale_fattura = new BigDecimal(totale_fattura).setScale(2, BigDecimal.ROUND_UP).floatValue();
-    }
+  public void setData_ordine(String idataordine) {
+    dataOrdine = idataordine;
+  }
 
-    public void setIva(int i_iva)
-    {
-        iva = i_iva;
-        totale_fattura = importo + ((importo / 100) * iva);
-        totale_fattura = new BigDecimal(totale_fattura).setScale(2, BigDecimal.ROUND_UP).floatValue();
-    }
+  public void setImporto(float iimporto) {
+    importo = iimporto;
+    totaleFattura = importo + ((importo / 100) * iva);
+    totaleFattura =
+            new BigDecimal(totaleFattura).setScale(2, BigDecimal.ROUND_UP).floatValue();
+  }
 
-    public void setUtente(String i_utente)
-    {
-        utente = i_utente;
-    }
+  public void setIva(int iiva) {
+    iva = iiva;
+    totaleFattura = importo + ((importo / 100) * iva);
+    totaleFattura =
+            new BigDecimal(totaleFattura).setScale(2, BigDecimal.ROUND_UP).floatValue();
+  }
 
-    public void addProdotto(String i_prodotto)
-    {
-        prodotti.add(i_prodotto);
-    }
+  public void setUtente(String iutente) {
+    utente = iutente;
+  }
 
-    private String codice;
-    private String data_ordine;
-    private float importo;
-    private int iva;
-    private float totale_fattura;
-    private String utente;
-    private ArrayList<String> prodotti;
+  public void addProdotto(String iprodotto) {
+    prodotti.add(iprodotto);
+  }
+
+  private String codice;
+  private String dataOrdine;
+  private float importo;
+  private int iva;
+  private float totaleFattura;
+  private String utente;
+  private ArrayList<String> prodotti;
 }
