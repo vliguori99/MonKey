@@ -2,6 +2,7 @@ package it.unisa.is.monkey.applicationLogic.userManager.gestioneRegistrazione;
 
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Utente;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreUtente.UserNotRegisteredException;
+import it.unisa.is.monkey.applicationLogic.userManager.MailSingletonSender;
 import it.unisa.is.monkey.model.MySqlUtenteDao;
 
 /**
@@ -9,7 +10,7 @@ import it.unisa.is.monkey.model.MySqlUtenteDao;
  */
 public class RegistrazioneService implements RegistrazioneServiceInterface {
 
-  //private MailSingletonSender mailSingletonSender = new MailSingletonSender();
+  private MailSingletonSender mailSingletonSender = new MailSingletonSender();
   private MySqlUtenteDao utenteDao = new MySqlUtenteDao();
 
   @Override
@@ -25,7 +26,7 @@ public class RegistrazioneService implements RegistrazioneServiceInterface {
     Utente utente = new Utente(id, nome, cognome, username, email, psw, indirizzo, numCarta,
             amministratore);
     utenteDao.createUtente(utente);
-    // mailSingletonSender.sendEmailCreazioneAccount(utente);
+    mailSingletonSender.sendEmailCreazioneAccount(utente);
     return utenteDao.getUtente(id);
   }
 }
