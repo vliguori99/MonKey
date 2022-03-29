@@ -1,6 +1,6 @@
 package it.unisa.is.monkey.web;
 
-import it.unisa.is.monkey.applicationLogic.adminManager.gestioneProdottiAdmin.ProdottiServiceAdmin;
+import it.unisa.is.monkey.applicationLogic.adminmanager.gestioneprodottiadmin.ProdottiServiceAdmin;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.ProductNotCreatedException;
 import java.io.IOException;
 import javax.servlet.ServletException;

@@ -1,4 +1,4 @@
-package it.unisa.is.monkey.applicationLogic.adminManager.gestioneUtentiAdmin;
+package it.unisa.is.monkey.applicationLogic.adminmanager.gestioneutentiadmin;
 
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Utente;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreUtente.UserNotDeletedException;

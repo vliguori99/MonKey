@@ -1,4 +1,4 @@
-package it.unisa.is.monkey.applicationLogic.userManager.gestioneAutenticazione;
+package it.unisa.is.monkey.applicationLogic.usermanager.gestioneautenticazione;
 
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Utente;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreUtente.LogoutFailedException;

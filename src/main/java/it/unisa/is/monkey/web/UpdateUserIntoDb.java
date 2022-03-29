@@ -1,6 +1,6 @@
 package it.unisa.is.monkey.web;
 
-import it.unisa.is.monkey.applicationLogic.adminManager.gestioneUtentiAdmin.UtentiServiceAdmin;
+import it.unisa.is.monkey.applicationLogic.adminmanager.gestioneutentiadmin.UtentiServiceAdmin;
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Utente;
 import java.io.IOException;
 import javax.servlet.ServletException;

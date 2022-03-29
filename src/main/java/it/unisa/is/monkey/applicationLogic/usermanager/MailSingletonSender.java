@@ -1,4 +1,4 @@
-package it.unisa.is.monkey.applicationLogic.userManager;
+package it.unisa.is.monkey.applicationLogic.usermanager;
 
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Utente;
 import java.util.Properties;

@@ -3,7 +3,7 @@ package it.unisa.is.monkey.web;
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Ordine;
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Utente;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.OrderNotFoundException;
-import it.unisa.is.monkey.applicationLogic.userManager.gestioneOrdineUtente.OrdiniServiceUtente;
+import it.unisa.is.monkey.applicationLogic.usermanager.gestioneordineutente.OrdiniServiceUtente;
 import it.unisa.is.monkey.model.MySqlOrdineDao;
 import it.unisa.is.monkey.model.MySqlUtenteDao;
 import java.io.IOException;

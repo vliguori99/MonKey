@@ -1,9 +1,9 @@
 package it.unisa.is.monkeyTest.applicationLogicTest.adminManagerTest;
 
 
-import it.unisa.is.monkey.applicationLogic.adminManager.gestioneOrdineAdmin.OrdiniServiceAdmin;
-import it.unisa.is.monkey.applicationLogic.adminManager.gestioneProdottiAdmin.ProdottiServiceAdmin;
-import it.unisa.is.monkey.applicationLogic.adminManager.gestioneUtentiAdmin.UtentiServiceAdmin;
+import it.unisa.is.monkey.applicationLogic.adminmanager.gestioneordineadmin.OrdiniServiceAdmin;
+import it.unisa.is.monkey.applicationLogic.adminmanager.gestioneprodottiadmin.ProdottiServiceAdmin;
+import it.unisa.is.monkey.applicationLogic.adminmanager.gestioneutentiadmin.UtentiServiceAdmin;
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Ordine;
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Utente;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.ProductNotCreatedException;

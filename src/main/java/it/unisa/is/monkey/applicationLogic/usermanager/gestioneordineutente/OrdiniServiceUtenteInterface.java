@@ -1,4 +1,4 @@
-package it.unisa.is.monkey.applicationLogic.userManager.gestioneOrdineUtente;
+package it.unisa.is.monkey.applicationLogic.usermanager.gestioneordineutente;
 
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Ordine;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.OrderNotFoundException;

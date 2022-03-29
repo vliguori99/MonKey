@@ -1,4 +1,4 @@
-package it.unisa.is.monkey.applicationLogic.adminManager.gestioneOrdineAdmin;
+package it.unisa.is.monkey.applicationLogic.adminmanager.gestioneordineadmin;
 
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Ordine;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreUtente.UtenteNotLoggedException;
