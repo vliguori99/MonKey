@@ -38,11 +38,11 @@ public class MySqlUtenteDao {
   /** Eliminare un utente. */
   private static final String DELETE_QUERY = "DELETE FROM utente WHERE id = ?";
 
-    /**
-     * Metodo che ritorna tutti gli utenti nel DB.
-     *
-     * @return una lista di Utenti
-     */
+  /**
+   * Metodo che ritorna tutti gli utenti nel DB.
+   *
+   * @return una lista di Utenti
+   */
   public List<Utente> getAllUtenti() {
     List<Utente> utenti = new ArrayList<Utente>();
     Utente utente = null;

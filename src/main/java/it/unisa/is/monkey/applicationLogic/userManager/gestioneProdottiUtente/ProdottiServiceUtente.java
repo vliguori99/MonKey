@@ -90,11 +90,11 @@ public class ProdottiServiceUtente implements ProdottiServiceUtenteInterface {
   @Override
   public int rimuoviUnoDalCarrello(String idProdotto, String usercode, String ip)
           throws QuantityException {
-    int qCarrello = prodottoDao.getQuantityIntoCart(idProdotto, usercode, ip);
-    if (qCarrello <= 0) {
+    int qcarrello = prodottoDao.getQuantityIntoCart(idProdotto, usercode, ip);
+    if (qcarrello <= 0) {
       throw new QuantityException("Prodotto non presente nel carrello");
     }
     prodottoDao.updateGameUser(-1, idProdotto, usercode, ip);
-    return qCarrello;
+    return qcarrello;
   }
 }

@@ -8,7 +8,7 @@ import it.unisa.is.monkey.model.MySqlUtenteDao;
  * Classe che gestisce servizi admin.
  */
 public class UtentiServiceAdmin implements UtentiServiceAdminInterface {
-  private MySqlUtenteDao utenteDAO = new MySqlUtenteDao();
+  private MySqlUtenteDao utenteDao = new MySqlUtenteDao();
 
   /**
    * metodo che rimuove l'utente dal db.
@@ -21,15 +21,15 @@ public class UtentiServiceAdmin implements UtentiServiceAdminInterface {
     if (utente == null) {
       throw new UserNotDeletedException("Utente non valido");
     }
-    utenteDAO.deleteUtente(utente);
+    utenteDao.deleteUtente(utente);
   }
 
   @Override
   public Utente modificaUtenteAdmin(String idUtente, boolean admin) {
-    Utente daModificare = utenteDAO.getUtente(idUtente);
+    Utente daModificare = utenteDao.getUtente(idUtente);
     if (daModificare.getAmministratore() != admin) {
       daModificare.setAmministratore(admin);
-      utenteDAO.updateUtente(daModificare);
+      utenteDao.updateUtente(daModificare);
     }
     return daModificare;
   }
