@@ -1,8 +1,8 @@
-package it.unisa.is.monkey.applicationLogic.usermanager.gestioneregistrazione;
+package it.unisa.is.monkey.applicationLogic.userManager.gestioneRegistrazione;
 
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Utente;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreUtente.UserNotRegisteredException;
-import it.unisa.is.monkey.applicationLogic.usermanager.MailSingletonSender;
+import it.unisa.is.monkey.applicationLogic.userManager.MailSingletonSender;
 import it.unisa.is.monkey.model.MySqlUtenteDao;
 
 /**

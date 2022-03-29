@@ -1,7 +1,7 @@
 package it.unisa.is.monkey.web;
 
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreUtente.UserNotModifiedException;
-import it.unisa.is.monkey.applicationLogic.usermanager.gestioneaccountutente.AccountServiceUtente;
+import it.unisa.is.monkey.applicationLogic.userManager.gestioneAccountUtente.AccountServiceUtente;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

@@ -8,11 +8,11 @@ import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.OrderNotF
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.PurchaseFailedException;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.QuantityException;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreUtente.*;
-import it.unisa.is.monkey.applicationLogic.usermanager.gestioneaccountutente.AccountServiceUtente;
-import it.unisa.is.monkey.applicationLogic.usermanager.gestioneautenticazione.AutenticazioneService;
-import it.unisa.is.monkey.applicationLogic.usermanager.gestioneordineutente.OrdiniServiceUtente;
-import it.unisa.is.monkey.applicationLogic.usermanager.gestioneprodottiutente.ProdottiServiceUtente;
-import it.unisa.is.monkey.applicationLogic.usermanager.gestioneregistrazione.RegistrazioneService;
+import it.unisa.is.monkey.applicationLogic.userManager.gestioneAccountUtente.AccountServiceUtente;
+import it.unisa.is.monkey.applicationLogic.userManager.gestioneAutenticazione.AutenticazioneService;
+import it.unisa.is.monkey.applicationLogic.userManager.gestioneOrdineUtente.OrdiniServiceUtente;
+import it.unisa.is.monkey.applicationLogic.userManager.gestioneProdottiUtente.ProdottiServiceUtente;
+import it.unisa.is.monkey.applicationLogic.userManager.gestioneRegistrazione.RegistrazioneService;
 
 import it.unisa.is.monkey.model.MySqlProdottoDao;
 import it.unisa.is.monkey.model.MySqlUtenteDao;

@@ -1,4 +1,4 @@
-package it.unisa.is.monkey.applicationLogic.usermanager.gestioneregistrazione;
+package it.unisa.is.monkey.applicationLogic.userManager.gestioneRegistrazione;
 
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Utente;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreUtente.UserNotRegisteredException;

@@ -63,7 +63,7 @@ public class MySqlProdottoDao {
   //Visualizza tutti i prodotti nei carrelli
   private static final String READ_PRODUCT_INTO_EVERY_CART = "SELECT * FROM aggiunto";
   //Visualizza tutti i prodotti in un carrello
-  private static final String READ_PRODUCT_INTO_A_CART = "SELECT * FROM aggiunto WHERE (utente = ?"
+  private static final String READ_PRODUCT_INTO_A_CART = "SELECT * FROM aggiunto WHERE (utente = ? "
           + "OR ip = ?)";
   //Seleziona i prodotti presenti nel carrello di un utente non registrato
   private static final String SELECT_PRODUCTS_FROM_IP_CART = "SELECT prodotto, quantita "

@@ -1,7 +1,7 @@
 package it.unisa.is.monkey.web;
 
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.QuantityException;
-import it.unisa.is.monkey.applicationLogic.usermanager.gestioneprodottiutente.ProdottiServiceUtente;
+import it.unisa.is.monkey.applicationLogic.userManager.gestioneProdottiUtente.ProdottiServiceUtente;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

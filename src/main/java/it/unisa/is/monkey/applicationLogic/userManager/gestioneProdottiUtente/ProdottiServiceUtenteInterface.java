@@ -1,4 +1,4 @@
-package it.unisa.is.monkey.applicationLogic.usermanager.gestioneprodottiutente;
+package it.unisa.is.monkey.applicationLogic.userManager.gestioneProdottiUtente;
 
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Ordine;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.CartException;

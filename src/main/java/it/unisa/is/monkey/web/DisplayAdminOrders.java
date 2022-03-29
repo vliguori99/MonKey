@@ -1,6 +1,6 @@
 package it.unisa.is.monkey.web;
 
-import it.unisa.is.monkey.applicationLogic.adminmanager.gestioneordineadmin.OrdiniServiceAdmin;
+import it.unisa.is.monkey.applicationLogic.adminManager.gestioneOrdineAdmin.OrdiniServiceAdmin;
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Ordine;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreUtente.UtenteNotLoggedException;
 import java.io.IOException;

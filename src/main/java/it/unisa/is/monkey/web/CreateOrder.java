@@ -2,7 +2,7 @@ package it.unisa.is.monkey.web;
 
 import it.unisa.is.monkey.applicationLogic.monkeyEntita.Ordine;
 import it.unisa.is.monkey.applicationLogic.monkeyErrore.erroreProdotto.PurchaseFailedException;
-import it.unisa.is.monkey.applicationLogic.usermanager.gestioneprodottiutente.ProdottiServiceUtente;
+import it.unisa.is.monkey.applicationLogic.userManager.gestioneProdottiUtente.ProdottiServiceUtente;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
